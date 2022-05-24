@@ -22,6 +22,7 @@ header {
         color: #ee4d2d;
     }
 }
+
 .register {
     display: flex;
     flex-direction: row;
@@ -46,15 +47,30 @@ header {
         box-shadow: 0px 0px 10px 6px rgba(0, 0, 0, 0.2);
         margin-right: 12%;
 
+        & .title {
+            text-align: left;
+            font-size: 22px;
+        }
+
+        & .error_register {
+            display: flex;
+            align-items: center;
+            color: red;
+            border: 1px solid #ef4f4f;
+            border-radius: 4px;
+            padding: 10px 15px;
+            margin-top: 15px;
+
+            & svg {
+                width: 25px;
+                height: 25px;
+            }
+        }
+
         & .form {
             position: relative;
             display: flex;
             flex-direction: column;
-
-            & .title {
-                text-align: left;
-                font-size: 22px;
-            }
 
             & .error {
                 color: red;
@@ -74,13 +90,13 @@ header {
 
             & .showPassword {
                 position: absolute;
-                top: 47%;
+                top: 43.5%;
                 right: 5%;
             }
 
             & .showConfirmPassword {
                 position: absolute;
-                top: 62.5%;
+                top: 60%;
                 right: 5%;
             }
 
@@ -117,6 +133,33 @@ header {
                 font-size: 16px;
                 padding: 0px 8px;
                 color: #ccc;
+            }
+        }
+
+        & .or_container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+
+            & .or_items {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 45%;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                padding: 8px 6px;
+                cursor: pointer;
+
+                & span {
+                    font-size: 14px;
+                    padding-left: 6px;
+                }
+
+                & svg {
+                    font-size: 25px;
+                }
             }
         }
 

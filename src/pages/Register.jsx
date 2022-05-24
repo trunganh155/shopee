@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AiOutlineCloseCircle } from "react-icons/ai";
+import { FaEye, FaEyeSlash, FaFacebook } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
-import logo1 from "../assets/images/logoSP.png";
 import logo2 from "../assets/images/logo-2.png";
+import logo1 from "../assets/images/logoSP.png";
 import Loading from "../components/Loading";
 import "../styles/Register.scss";
 import { registerSchema } from "../validations/UserValidation";
@@ -14,6 +16,7 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isRegister, setIsRegister] = useState();
 
   const formik = useFormik({
     initialValues: {
@@ -39,13 +42,12 @@ export default function Register() {
           },
         });
 
-        //alert(JSON.stringify(payload, null, 2));
-
         navigate("/");
       } catch (error) {
         console.log(error.message);
 
         console.log("REGISTER FAIL");
+        setIsRegister(false);
       } finally {
         setLoading(false);
       }
@@ -64,14 +66,24 @@ export default function Register() {
       </header>
       <div className="register">
         {loading && <Loading />}
-
         <div className="register__logo">
           <img src={logo1} alt="logo" />
         </div>
 
         <div className="register__form">
+          <span className="title">Đăng ký</span>
+          {isRegister == false ? (
+            <div className="error_register">
+              <AiOutlineCloseCircle />
+              <span>
+                Số điện thoại của bạn đã được đăng ký cho một tài khoản khác.
+              </span>
+            </div>
+          ) : (
+            <></>
+          )}
+
           <form className="form" onSubmit={formik.handleSubmit}>
-            <span className="title">Đăng ký</span>
             <input
               name="name"
               type="text"
@@ -167,6 +179,17 @@ export default function Register() {
             <div class="line"></div>
             <span>Hoặc</span>
             <div class="line"></div>
+          </div>
+
+          <div className="or_container">
+            <div className="or_items">
+              <FaFacebook />
+              <span>Facebook</span>
+            </div>
+            <div className="or_items">
+              <FcGoogle />
+              <span>Google</span>
+            </div>
           </div>
 
           <div className="guest">

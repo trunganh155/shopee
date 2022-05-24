@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AiOutlineCloseCircle } from "react-icons/ai";
+import { FaEye, FaEyeSlash, FaApple, FaFacebook } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
-import logo1 from "../assets/images/logoSP.png";
 import logo2 from "../assets/images/logo-2.png";
+import logo1 from "../assets/images/logoSP.png";
 import Loading from "../components/Loading";
 import "../styles/Login.scss";
 import { loginSchema } from "../validations/UserValidation";
@@ -13,7 +15,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState();
   const formik = useFormik({
     initialValues: {
       phone: "",
@@ -42,8 +44,9 @@ export default function Login() {
         }
       } catch (error) {
         console.log(error);
+        setIsLogin(false);
 
-        console.log("LOGIN FAIL");
+        // alert("LOGIN FAIL");
       } finally {
         setLoading(false);
       }
@@ -68,8 +71,20 @@ export default function Login() {
         </div>
 
         <div className="login__form">
+          <span className="title">Đăng nhập</span>
+          {isLogin == false ? (
+            <div className="error_login">
+              <AiOutlineCloseCircle />
+              <span>
+                Số điện thoại hoặc mật khẩu của bạn không đúng, vui lòng thử
+                lại.
+              </span>
+            </div>
+          ) : (
+            <></>
+          )}
+
           <form className="form" onSubmit={formik.handleSubmit}>
-            <span className="title">Đăng nhập</span>
             <input
               name="phone"
               type="text"
@@ -122,6 +137,21 @@ export default function Login() {
             <div class="line"></div>
             <span>Hoặc</span>
             <div class="line"></div>
+          </div>
+
+          <div className="or_container">
+            <div className="or_items">
+              <FaFacebook />
+              <span>Facebook</span>
+            </div>
+            <div className="or_items">
+              <FcGoogle />
+              <span>Google</span>
+            </div>
+            <div className="or_items">
+              <FaApple />
+              <span>Apple</span>
+            </div>
           </div>
 
           <div className="guest">
