@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import { useState } from "react";
-import { AiOutlineCloseCircle } from "react-icons/ai";
+import { BiError } from "react-icons/bi";
 import { FaEye, FaEyeSlash, FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
@@ -42,7 +42,7 @@ export default function Register() {
           },
         });
 
-        navigate("/");
+        navigate("/login");
       } catch (error) {
         console.log(error.message);
 
@@ -74,7 +74,7 @@ export default function Register() {
           <span className="title">Đăng ký</span>
           {isRegister == false ? (
             <div className="error_register">
-              <AiOutlineCloseCircle />
+              <BiError />
               <span>
                 Số điện thoại của bạn đã được đăng ký cho một tài khoản khác.
               </span>
@@ -183,7 +183,7 @@ export default function Register() {
 
           <div className="or_container">
             <div className="or_items">
-              <FaFacebook />
+              <FaFacebook style={{ color: "#125195" }} />
               <span>Facebook</span>
             </div>
             <div className="or_items">

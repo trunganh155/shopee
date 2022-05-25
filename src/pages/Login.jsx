@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import { useState } from "react";
-import { AiOutlineCloseCircle } from "react-icons/ai";
+import { BiError } from "react-icons/bi";
 import { FaEye, FaEyeSlash, FaApple, FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
@@ -34,9 +34,8 @@ export default function Login() {
           },
         });
 
-        localStorage.setItem("token", JSON.stringify(res.data.token));
+        localStorage.setItem("token", res.data.token);
         const token = localStorage.getItem("token");
-        console.log(token);
 
         if (token !== "") {
           setIsLogin(true);
@@ -55,6 +54,7 @@ export default function Login() {
 
   return (
     <div>
+      {loading && <Loading />}
       <header>
         <div style={{ display: "flex", alignItems: "center", width: 300 }}>
           <img src={logo2} alt="logo" />
@@ -64,8 +64,6 @@ export default function Login() {
         <a href="">Bạn cầu giúp đỡ?</a>
       </header>
       <div className="login">
-        {loading && <Loading />}
-
         <div className="login__logo">
           <img src={logo1} alt="logo" />
         </div>
@@ -74,7 +72,7 @@ export default function Login() {
           <span className="title">Đăng nhập</span>
           {isLogin == false ? (
             <div className="error_login">
-              <AiOutlineCloseCircle />
+              <BiError />
               <span>
                 Số điện thoại hoặc mật khẩu của bạn không đúng, vui lòng thử
                 lại.
@@ -141,7 +139,7 @@ export default function Login() {
 
           <div className="or_container">
             <div className="or_items">
-              <FaFacebook />
+              <FaFacebook style={{ color: "#125195" }} />
               <span>Facebook</span>
             </div>
             <div className="or_items">
