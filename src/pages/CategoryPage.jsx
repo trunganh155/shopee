@@ -3,7 +3,7 @@ import React from 'react';
 function CategoryPage(props) {
     return (
         <div>
-            category 
+            category page 2
         </div>
     );
 }
