@@ -1,11 +1,11 @@
 import React from 'react';
-
-function CategoryPage_NamLuong(props) {
+            
+function CategoryPage(props) {
     return (
         <div>
-            
+            category page 2
         </div>
     );
 }
 
-export default CategoryPage_NamLuong;
+export default CategoryPage;
