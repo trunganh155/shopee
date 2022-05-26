@@ -1,38 +1,49 @@
-import axios from "axios";
 import React from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setProfile } from "../redux/_profile_slice";
 
 export default function Home() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
 
-
-  const viewProfile = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const res = await axios({
-        method: "get",
-        url: "https://k24-server-1.herokuapp.com/user",
-        headers: {
-          "Content-Type": "application/json",
-          token: token,
-        },
-      });
-
-      dispatch(setProfile(res.data)); //lay thong tin cua nguoi dung luu vao profile trong redux
-
-      navigate("/profile");
-    } catch (error) {
-      console.log(error.message);
-    } finally {
-    }
-  };
   return (
-    <div>
-      Home
-      <button onClick={viewProfile}>Profile</button>
+    <div style={{ display: "flex", justifyContent: "center", gap: "30px" }}>
+      Trang chủ
+      {token === null ? (
+        <div>
+          <button
+            onClick={() => {
+              navigate("/register");
+            }}
+          >
+            Đăng ký
+          </button>
+          <button
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            Đăng nhập
+          </button>
+        </div>
+      ) : (
+        <div>
+          <button
+            onClick={() => {
+              navigate("/profile");
+            }}
+          >
+            Tài khoản của bạn
+          </button>
+          <button
+            onClick={() => {
+              localStorage.removeItem("token");
+              navigate("/");
+            }}
+          >
+            Đăng xuất
+          </button>
+        </div>
+      )}
     </div>
   );
 }

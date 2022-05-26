@@ -58,11 +58,17 @@ export default function Register() {
     <div>
       <header>
         <div style={{ display: "flex", alignItems: "center", width: 300 }}>
-          <img src={logo2} alt="logo" />
+          <img
+            src={logo2}
+            alt="logo"
+            onClick={() => {
+              navigate("/");
+            }}
+          />
           <span>Đăng ký</span>
         </div>
 
-        <a href="">Bạn cầu giúp đỡ?</a>
+        <a href="#">Bạn cầu giúp đỡ?</a>
       </header>
       <div className="register">
         {loading && <Loading />}
@@ -72,7 +78,7 @@ export default function Register() {
 
         <div className="register__form">
           <span className="title">Đăng ký</span>
-          {isRegister == false ? (
+          {isRegister === false ? (
             <div className="error_register">
               <BiError />
               <span>
