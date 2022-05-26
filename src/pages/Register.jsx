@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiError } from "react-icons/bi";
 import { FaEye, FaEyeSlash, FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
@@ -17,6 +17,13 @@ export default function Register() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isRegister, setIsRegister] = useState();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token !== null) {
+      navigate("/");
+    }
+  }, []);
 
   const formik = useFormik({
     initialValues: {
