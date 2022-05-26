@@ -3,6 +3,9 @@ import "./App.css";
 import PrivateRouter from "./components/PrivateRouter";
 import routers from "./routers/router";
 
+
+console.log('conflig');
+
 function App() {
   return (
     <div className="App">
