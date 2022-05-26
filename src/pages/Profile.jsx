@@ -1,28 +1,51 @@
 import axios from "axios";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { IoCamera } from "react-icons/io5";
 import Loading from "../components/Loading";
 import "../styles/Profile.scss";
 
 export default function Profile() {
   const [loading, setLoading] = useState(false);
-  const { profile } = useSelector((state) => state.profileReducer); //lay profile tu redux len
-  const [avatar, setAvatar] = useState(profile.avatar); //avt mac dinh lay tu redux len
-  const [data, setData] = useState(profile);
+  const [data, setData] = useState();
+  // const [avatar, setAvatar] = useState();
   //const formData = new FormData();
 
-  const handleChangeAvatar = (e) => {
-    const file = e.target.files[0];
-    file.preview = URL.createObjectURL(file);
+  useEffect(() => {
+    handleGetProfile();
+  }, []);
 
-    //formData.append("File", e.target.files[0]);
+  const handleGetProfile = async () => {
+    try {
+      setLoading(true);
+      const token = localStorage.getItem("token");
+      const res = await axios({
+        method: "get",
+        url: "https://k24-server-1.herokuapp.com/user",
+        headers: {
+          "Content-Type": "application/json",
+          token: token,
+        },
+      });
 
-    setAvatar(file);
-    setData({ ...data, avatar: file });
+      setData(res.data);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const updateProfile = async () => {
+  // const handleChangeAvatar = (e) => {
+  //   const file = e.target.files[0];
+  //   file.preview = URL.createObjectURL(file);
+
+  //   //formData.append("File", e.target.files[0]);
+
+  //   setAvatar(file);
+  //   setData({ ...data, avatar: file });
+  // };
+
+  const handleUpdateProfile = async () => {
     try {
       setLoading(true);
       const token = localStorage.getItem("token");
@@ -34,14 +57,16 @@ export default function Profile() {
           address: data.address,
           //avatar: data.avatar,
           avatar:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWFLP-G1MZF20B18zKRTYtngwjUnqFgPi9jA&usqp=CAU",
-          //"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD3TDQBB-_F1sfu-gElz73vtUAdlOdLerHDw&usqp=CAU",
+            // "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWFLP-G1MZF20B18zKRTYtngwjUnqFgPi9jA&usqp=CAU",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD3TDQBB-_F1sfu-gElz73vtUAdlOdLerHDw&usqp=CAU",
         },
         headers: {
           "Content-Type": "application/json",
           token: token,
         },
       });
+
+      handleGetProfile(); //Cap nhat lai thong tin vua update tren giao dien
     } catch (error) {
       console.log(error.message);
     } finally {
@@ -64,13 +89,13 @@ export default function Profile() {
             <div className="form">
               <div className="group">
                 <label>SĐT:</label>
-                <input readOnly type="text" defaultValue={profile.phone} />
+                <input readOnly type="text" defaultValue={data && data.phone} />
               </div>
               <div className="group">
                 <label>Tên:</label>
                 <input
                   type="text"
-                  value={data.name}
+                  value={data && data.name}
                   onChange={(e) => {
                     setData({ ...data, name: e.target.value });
                   }}
@@ -80,26 +105,26 @@ export default function Profile() {
                 <label>Địa chỉ:</label>
                 <input
                   type="text"
-                  value={data.address}
+                  value={data && data.address}
                   onChange={(e) => {
                     setData({ ...data, address: e.target.value });
                     console.log(e.target.value);
                   }}
                 />
               </div>
-              <button className="btnUpdate" onClick={updateProfile}>
+              <button className="btnUpdate" onClick={handleUpdateProfile}>
                 Lưu
               </button>
             </div>
           </section>
           <section className="profile__main__avatar">
-            {avatar && <img src={avatar.preview || avatar} alt="avt" />}
+            <img src={data && data.avatar} alt="" />
             <div className="changeAvatar">
               <IoCamera />
               <input
                 type="file"
                 accept="image/*"
-                onChange={handleChangeAvatar}
+                // onChange={handleChangeAvatar}
               />
             </div>
           </section>
