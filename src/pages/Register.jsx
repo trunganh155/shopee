@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiError } from "react-icons/bi";
 import { FaEye, FaEyeSlash, FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
@@ -17,6 +17,13 @@ export default function Register() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isRegister, setIsRegister] = useState();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token !== null) {
+      navigate("/");
+    }
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -58,11 +65,17 @@ export default function Register() {
     <div>
       <header>
         <div style={{ display: "flex", alignItems: "center", width: 300 }}>
-          <img src={logo2} alt="logo" />
+          <img
+            src={logo2}
+            alt="logo"
+            onClick={() => {
+              navigate("/");
+            }}
+          />
           <span>Đăng ký</span>
         </div>
 
-        <a href="">Bạn cầu giúp đỡ?</a>
+        <a href="#">Bạn cầu giúp đỡ?</a>
       </header>
       <div className="register">
         {loading && <Loading />}
@@ -72,7 +85,7 @@ export default function Register() {
 
         <div className="register__form">
           <span className="title">Đăng ký</span>
-          {isRegister == false ? (
+          {isRegister === false ? (
             <div className="error_register">
               <BiError />
               <span>

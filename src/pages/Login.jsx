@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiError } from "react-icons/bi";
 import { FaEye, FaEyeSlash, FaApple, FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
@@ -16,6 +16,14 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isLogin, setIsLogin] = useState();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token !== null) {
+      navigate("/");
+    }
+  }, []);
+
   const formik = useFormik({
     initialValues: {
       phone: "",
@@ -37,15 +45,13 @@ export default function Login() {
         localStorage.setItem("token", res.data.token);
         const token = localStorage.getItem("token");
 
-        if (token !== "") {
+        if (token !== null) {
           setIsLogin(true);
           navigate("/");
         }
       } catch (error) {
         console.log(error);
         setIsLogin(false);
-
-        // alert("LOGIN FAIL");
       } finally {
         setLoading(false);
       }
@@ -57,11 +63,17 @@ export default function Login() {
       {loading && <Loading />}
       <header>
         <div style={{ display: "flex", alignItems: "center", width: 300 }}>
-          <img src={logo2} alt="logo" />
+          <img
+            src={logo2}
+            alt="logo"
+            onClick={() => {
+              navigate("/");
+            }}
+          />
           <span>Đăng nhập</span>
         </div>
 
-        <a href="">Bạn cầu giúp đỡ?</a>
+        <a href="#">Bạn cầu giúp đỡ?</a>
       </header>
       <div className="login">
         <div className="login__logo">
@@ -70,7 +82,7 @@ export default function Login() {
 
         <div className="login__form">
           <span className="title">Đăng nhập</span>
-          {isLogin == false ? (
+          {isLogin === false ? (
             <div className="error_login">
               <BiError />
               <span>
@@ -127,8 +139,8 @@ export default function Login() {
           </form>
 
           <div className="forgotPass">
-            <a href="">Quên mật khẩu</a>
-            <a href="">Đăng nhập với SMS</a>
+            <a href="#">Quên mật khẩu</a>
+            <a href="#">Đăng nhập với SMS</a>
           </div>
 
           <div className="or">
