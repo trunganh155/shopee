@@ -5,6 +5,7 @@ function CategoryItem(props) {
         <div>
             category Item 22222-33
             category Item 22222-44
+            category Item 22222-55
         </div>
     );
 }
