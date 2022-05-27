@@ -2,6 +2,7 @@ import HomePage from "../pages/Home";
 import LoginPage from "../pages/Login";
 import ProfilePage from "../pages/Profile";
 import RegisterPage from "../pages/Register";
+import Search from "../pages/Search";
 
 const routers = [
   {
@@ -24,6 +25,11 @@ const routers = [
     element: <RegisterPage />,
     private: false,
   },
+  {
+    path: "/search",
+    element: <Search />,
+    private: false,
+  }
 ];
 
 export default routers;

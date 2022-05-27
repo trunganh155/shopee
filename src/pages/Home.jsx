@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -7,6 +8,9 @@ export default function Home() {
 
   return (
     <div style={{ display: "flex", justifyContent: "center", gap: "30px" }}>
+      
+      <Header />
+      
       Trang chủ
       {token === null ? (
         <div>
