@@ -2,6 +2,7 @@ import HomePage from "../pages/Home";
 import LoginPage from "../pages/Login";
 import ProfilePage from "../pages/Profile";
 import RegisterPage from "../pages/Register";
+import PageNotFound from "../pages/PageNotFound";
 
 const routers = [
   {
@@ -22,6 +23,11 @@ const routers = [
   {
     path: "/register",
     element: <RegisterPage />,
+    private: false,
+  },
+  {
+    path: "/*",
+    element: <PageNotFound />,
     private: false,
   },
 ];
