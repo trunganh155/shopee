@@ -1,4 +1,5 @@
 import CategoryItem from "../pages/CategoryItem";
+import Detail from "../pages/Detail";
 import HomePage from "../pages/Home";
 import LoginPage from "../pages/Login";
 import ProfilePage from "../pages/Profile";
@@ -34,6 +35,11 @@ const routers = [
   {
     path: "/categoryitem",
     element: <CategoryItem />,
+    private: false,
+  },
+  {
+    path: "/product/:id",
+    element: <Detail />,
     private: false,
   }
 ];
