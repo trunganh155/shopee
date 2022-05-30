@@ -3,9 +3,13 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Header.scss";
 import logoWhite from "../assets/images/logoWhite.png";
 import { GoSearch } from "react-icons/go";
+import { useSelector } from "react-redux";
 
 function Header(props) {
   const navigate = useNavigate();
+
+  const { user } = useSelector(state => state.userReducer);
+
   const token = localStorage.getItem("token");
   const [search, setSearch] = useState("");
 
@@ -36,6 +40,8 @@ function Header(props) {
           <GoSearch />
         </button>
       </section>
+
+      <h1>{user ? user.name : ''}</h1>
 
       <section className="header__user">
         {token === null ? (
