@@ -39,7 +39,7 @@ const routers = [
     private: false,
   },
   {
-    path: "/categoryitem",
+    path: "/category/:id/product",
     element: <CategoryItem />,
     private: false,
   },

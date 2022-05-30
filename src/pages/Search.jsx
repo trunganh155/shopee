@@ -22,7 +22,7 @@ function Search(props) {
 
   const loadProducts = async () => {
     try {
-      const endpoint =
+      const endpoint =  
         "https://k24-server-1.herokuapp.com/product?search=" + keyword;
 
       const { data } = await axios({
@@ -31,7 +31,9 @@ function Search(props) {
         data: {},
       });
 
+      console.log(data);
       setData(data);
+
     } catch (error) {
       console.log(error);
     }
@@ -40,7 +42,7 @@ function Search(props) {
   return (
     <div>
       <Header />
-      Search
+      
       <div className="products">
         {data.items.map((product) => {
           return <Product key={product._id} product={product} />;

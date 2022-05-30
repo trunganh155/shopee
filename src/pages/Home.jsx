@@ -1,8 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import Category from "../components/Category";
 import Header from "../components/Header";
 
 export default function Home() {
   return (
+
     <div
       style={{
         height: "1500px",
@@ -13,6 +16,8 @@ export default function Home() {
     >
       <Header />
       <span>Trang chủ</span>
+
+      <Category />
     </div>
   );
 }
