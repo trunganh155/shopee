@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Cart(props) {
+function Category(props) {
     return (
         <div>
-            Cart
+            Category list
         </div>
     );
 }
 
-export default Cart;
+export default Category;

@@ -1,8 +1,12 @@
+import CategoryItem from "../pages/CategoryItem";
+import Detail from "../pages/Detail";
 import HomePage from "../pages/Home";
 import LoginPage from "../pages/Login";
 import ProfilePage from "../pages/Profile";
 import RegisterPage from "../pages/Register";
 import Cart from "../pages/Cart"
+import PageNotFound from "../pages/PageNotFound";
+import Search from "../pages/Search";
 
 const routers = [
   {
@@ -30,6 +34,27 @@ const routers = [
     element: <Cart />,
     private: false,
   },
+  {
+    path: "/*",
+    element: <PageNotFound />,
+    private: false,
+  },
+  {
+    path: "/search",
+    element: <Search />,
+    private: false,
+  },
+  {
+    path: "/categoryitem",
+    element: <CategoryItem />,
+    private: false,
+  },
+  {
+    path: "/product/:id",
+    element: <Detail />,
+    private: false,
+  }
+
 ];
 
 export default routers;
