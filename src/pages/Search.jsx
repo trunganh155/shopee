@@ -22,7 +22,7 @@ function Search(props) {
 
   const loadProducts = async () => {
     try {
-      const endpoint =
+      const endpoint =  
         "https://k24-server-1.herokuapp.com/product?search=" + keyword;
 
       const { data } = await axios({
