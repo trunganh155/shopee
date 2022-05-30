@@ -48,6 +48,7 @@ const routers = [
     element: <Detail />,
     private: false,
   }
+
 ];
 
 export default routers;
