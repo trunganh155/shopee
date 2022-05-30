@@ -13,6 +13,8 @@ const URL = 'https://k24-server-1.herokuapp.com'
 
 function Cart(props) {
     const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(false)
+
     // const [quantity, setQuantity] = useState(0)
     // const [totalPrice, setTotalPrice] = useState(0)
     const token = localStorage.getItem("token");
@@ -40,20 +42,14 @@ function Cart(props) {
         }
     }
 
-    const dataUpdate = products.map(product => {
-        return (
-            {
-                product: product.product._id,
-                quantity: product.quantity
-            }
-        )
-    })
-
     const apiUpdateQuantity = async (products, product) => {
         try {
             const resultfilter = products.filter(productItem => {
                 return productItem.product !== product.product
             })
+
+            console.log([...resultfilter, product]);
+
             await axios(
             {
                 method: "PUT",
@@ -71,14 +67,35 @@ function Cart(props) {
         }
     }
 
-    const decreaseQuantity = (product) => {
-        apiUpdateQuantity(dataUpdate, { product: product.product._id, quantity: product.quantity - 1 })
-        getProduct()
+    const decreaseQuantity = async (product) => {
+        try {
+            setLoading(true)
+            await apiUpdateQuantity(filterData(), { product: product.product._id, quantity: product.quantity - 1 })
+            await getProduct();
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false)
+        }
+
     }
 
     const increaseQuantity = (product) => {
-        apiUpdateQuantity(dataUpdate, { product: product.product._id, quantity: product.quantity + 1 })
+        apiUpdateQuantity(filterData(), { product: product.product._id, quantity: product.quantity + 1 })
         getProduct()
+    }
+
+    const filterData = () => {
+        const dataUpdate = products.map(product => {
+            return (
+                {
+                    product: product.product._id,
+                    quantity: product.quantity
+                }
+            )
+        })
+
+        return dataUpdate;
     }
 
     const updateQuantity = () => {
@@ -112,7 +129,7 @@ function Cart(props) {
         return totalPrice += (product.product.price * product.quantity)
     })
     
-    if(products.length === 0) {
+    if(products.length === 0 || loading) {
         return <Loading />
     }
     return (
