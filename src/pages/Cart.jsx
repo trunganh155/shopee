@@ -85,6 +85,28 @@ function Cart(props) {
 
     }
 
+    const deleteProduct = async (product) => {
+        try {
+            const resultfilter = products.filter(productItem => {
+                return productItem.product !== product.product
+            })
+            await axios(
+            {
+                method: "PUT",
+                url: URL + "/cart",
+                headers: {
+                    "Content-Type": "application/json",
+                    token: token,
+                },
+                data: {
+                    products: resultfilter
+                }
+            })
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
     let totalPrice = 0
     products.forEach((product) => {
         return totalPrice += (product.product.price * product.quantity)
@@ -188,7 +210,7 @@ function Cart(props) {
                                                 <span>{(product.product.price * product.quantity).toFixed(2)}</span>
                                             </div>
                                             <div className="_1-z5aG _1AeN8q">
-                                                <button>
+                                                <button onClick={() => deleteProduct(product)}>
                                                     <UilTrashAlt />
                                                 </button>
                                                 <button>
