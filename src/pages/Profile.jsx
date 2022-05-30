@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { IoCamera } from "react-icons/io5";
+import Header from "../components/Header";
 import Loading from "../components/Loading";
 import "../styles/Profile.scss";
 
@@ -75,59 +76,66 @@ export default function Profile() {
   };
 
   return (
-    <div className="background">
-      {loading && <Loading />}
-      <div className="profile">
-        <section className="profile__title">
-          <span style={{ textTransform: "capitalize", fontSize: "25px" }}>
-            Hồ sơ của tôi
-          </span>
-          <span>Quản lý thông tin hồ sơ để bảo mật tài khoản</span>
-        </section>
-        <div className="profile__main">
-          <section className="profile__main__edit">
-            <div className="form">
-              <div className="group">
-                <label>SĐT:</label>
-                <input readOnly type="text" defaultValue={data && data.phone} />
+    <div>
+      <Header />
+      <div className="background">
+        {loading && <Loading />}
+        <div className="profile">
+          <section className="profile__title">
+            <span style={{ textTransform: "capitalize", fontSize: "25px" }}>
+              Hồ sơ của tôi
+            </span>
+            <span>Quản lý thông tin hồ sơ để bảo mật tài khoản</span>
+          </section>
+          <div className="profile__main">
+            <section className="profile__main__edit">
+              <div className="form">
+                <div className="group">
+                  <label>SĐT:</label>
+                  <input
+                    readOnly
+                    type="text"
+                    defaultValue={data && data.phone}
+                  />
+                </div>
+                <div className="group">
+                  <label>Tên:</label>
+                  <input
+                    type="text"
+                    value={data && data.name}
+                    onChange={(e) => {
+                      setData({ ...data, name: e.target.value });
+                    }}
+                  />
+                </div>
+                <div className="group">
+                  <label>Địa chỉ:</label>
+                  <input
+                    type="text"
+                    value={data && data.address}
+                    onChange={(e) => {
+                      setData({ ...data, address: e.target.value });
+                      console.log(e.target.value);
+                    }}
+                  />
+                </div>
+                <button className="btnUpdate" onClick={handleUpdateProfile}>
+                  Lưu
+                </button>
               </div>
-              <div className="group">
-                <label>Tên:</label>
+            </section>
+            <section className="profile__main__avatar">
+              <img src={data && data.avatar} alt="" />
+              <div className="changeAvatar">
+                <IoCamera />
                 <input
-                  type="text"
-                  value={data && data.name}
-                  onChange={(e) => {
-                    setData({ ...data, name: e.target.value });
-                  }}
+                  type="file"
+                  accept="image/*"
+                  // onChange={handleChangeAvatar}
                 />
               </div>
-              <div className="group">
-                <label>Địa chỉ:</label>
-                <input
-                  type="text"
-                  value={data && data.address}
-                  onChange={(e) => {
-                    setData({ ...data, address: e.target.value });
-                    console.log(e.target.value);
-                  }}
-                />
-              </div>
-              <button className="btnUpdate" onClick={handleUpdateProfile}>
-                Lưu
-              </button>
-            </div>
-          </section>
-          <section className="profile__main__avatar">
-            <img src={data && data.avatar} alt="" />
-            <div className="changeAvatar">
-              <IoCamera />
-              <input
-                type="file"
-                accept="image/*"
-                // onChange={handleChangeAvatar}
-              />
-            </div>
-          </section>
+            </section>
+          </div>
         </div>
       </div>
     </div>
