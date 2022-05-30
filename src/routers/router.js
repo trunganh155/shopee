@@ -4,6 +4,7 @@ import HomePage from "../pages/Home";
 import LoginPage from "../pages/Login";
 import ProfilePage from "../pages/Profile";
 import RegisterPage from "../pages/Register";
+import PageNotFound from "../pages/PageNotFound";
 import Search from "../pages/Search";
 
 const routers = [
@@ -28,6 +29,11 @@ const routers = [
     private: false,
   },
   {
+    path: "/*",
+    element: <PageNotFound />,
+    private: false,
+  },
+  {
     path: "/search",
     element: <Search />,
     private: false,
@@ -42,6 +48,7 @@ const routers = [
     element: <Detail />,
     private: false,
   }
+
 ];
 
 export default routers;
