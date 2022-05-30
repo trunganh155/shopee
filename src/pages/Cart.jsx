@@ -123,7 +123,7 @@ function Cart(props) {
                         src={logo2}
                         alt="logo"
                         onClick={() => {
-                        navigate("/");
+                            navigate("/");
                         }}
                     />
                     <h2>Giỏ Hàng</h2>
