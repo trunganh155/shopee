@@ -31,7 +31,9 @@ function Search(props) {
         data: {},
       });
 
+      console.log(data);
       setData(data);
+
     } catch (error) {
       console.log(error);
     }
@@ -41,7 +43,6 @@ function Search(props) {
     <div>
       <Header />
       
-      Search
       <div className="products">
         {data.items.map((product) => {
           return <Product key={product._id} product={product} />;

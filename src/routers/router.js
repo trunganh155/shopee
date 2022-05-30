@@ -32,7 +32,7 @@ const routers = [
     private: false,
   },
   {
-    path: "/categoryitem/:id",
+    path: "/category/:id/product",
     element: <CategoryItem />,
     private: false,
   }
