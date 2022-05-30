@@ -40,7 +40,6 @@ function Search(props) {
   return (
     <div>
       <Header />
-      
       Search
       <div className="products">
         {data.items.map((product) => {
