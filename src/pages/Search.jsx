@@ -39,6 +39,14 @@ function Search(props) {
     }
   };
 
+  const totalPage = Math.ceil(data.total_item / data.limit);
+
+  const pagination = [];
+  
+  for (let index = 0; index < totalPage; index++) {
+    pagination.push(<button>{ index + 1}</button>) 
+  }
+
   return (
     <div>
       <Header />
@@ -48,6 +56,11 @@ function Search(props) {
           return <Product key={product._id} product={product} />;
         })}
       </div>
+
+      {
+
+      }
+
     </div>
   );
 }

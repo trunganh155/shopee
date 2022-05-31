@@ -1,10 +1,14 @@
 import axios from "axios";
+// import { set } from "immer/dist/internal";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Loading from "../components/Loading";
+import Product from "../components/Product";
 import "../styles/CategoryItem.scss";
 
 function CategoryItem(props) {
   let { id } = useParams();
+  const [loading, setLoading] = useState(false);
 
   const [categoryItem, setCategoryItem] = useState({
     items: [],
@@ -18,6 +22,7 @@ function CategoryItem(props) {
   }, []);
 
   const loadCategoryItem = async () => {
+    setLoading(true);
     try {
       const endpoint =
         "https://k24-server-1.herokuapp.com/category/" + id + "/product";
@@ -31,6 +36,8 @@ function CategoryItem(props) {
       setCategoryItem(data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -38,19 +45,16 @@ function CategoryItem(props) {
     <div className="container">
       {/* <h4>{"Category: " + id}</h4> */}
       <h1>Category Item sản phẩm</h1>
-      
-      <div className="category-item__list">
-        {categoryItem.items.map((value, index) => (
-            <div key={index} className="category-item__inner">
-                <div className="category-item__title">{ value.name}</div>
-                <div className="category-item__image">
-                    <img  src={value.image} alt={value.image} />
-                    <div>{value.price}$</div>
-                    <div>category: {value.category.name}</div>
-                </div>
-            </div>
-        ))}
-      </div>
+
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="category-item__list">
+          {categoryItem.items.map((value, index) => (
+              <Product key={index} product={value} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

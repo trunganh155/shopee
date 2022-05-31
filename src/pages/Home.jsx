@@ -9,7 +9,7 @@ export default function Home() {
     <div
       style={{
         height: "1500px",
-        backgroundColor: "gray",
+        backgroundColor: "white",
         display: "flex",
         flexDirection: "column",
       }}
