@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "../styles/Header.scss";
-import logoWhite from "../assets/images/logoWhite.png";
-import { GoSearch } from "react-icons/go";
-import { AiFillInstagram, AiFillFacebook } from "react-icons/ai";
+import { AiFillFacebook, AiFillInstagram } from "react-icons/ai";
 import { CgShoppingCart } from "react-icons/cg";
+import { GoSearch } from "react-icons/go";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import logoWhite from "../assets/images/logoWhite.png";
+import "../styles/Header.scss";
 
 function Header(props) {
   const navigate = useNavigate();
 
-  const { user } = useSelector(state => state.userReducer);
+  const { user } = useSelector((state) => state.userReducer);
 
   const token = localStorage.getItem("token");
   const [search, setSearch] = useState("");
@@ -25,6 +25,14 @@ function Header(props) {
     }
   };
 
+  const handleCart = () => {
+    if (token) {
+      navigate("/cart");
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <div className="header">
       <section className="header__logo">
@@ -36,6 +44,7 @@ function Header(props) {
           }}
         />
       </section>
+
       <section className="header__search">
         <input
           type="text"
@@ -61,9 +70,10 @@ function Header(props) {
       </section>
 
       <section className="header__cart">
-        <CgShoppingCart />
+        <CgShoppingCart onClick={handleCart} />
       </section>
-      <h1>{user ? user.name : ''}</h1>
+
+      <h1>{user ? user.name : ""}</h1>
 
       <section className="header__user">
         {token === null ? (
