@@ -4,6 +4,7 @@ import HomePage from "../pages/Home";
 import LoginPage from "../pages/Login";
 import ProfilePage from "../pages/Profile";
 import RegisterPage from "../pages/Register";
+import Cart from "../pages/Cart";
 import PageNotFound from "../pages/PageNotFound";
 import Search from "../pages/Search";
 
@@ -29,8 +30,8 @@ const routers = [
     private: false,
   },
   {
-    path: "/*",
-    element: <PageNotFound />,
+    path: "/cart",
+    element: <Cart />,
     private: false,
   },
   {
@@ -47,8 +48,12 @@ const routers = [
     path: "/product/:id",
     element: <Detail />,
     private: false,
-  }
-
+  },
+  {
+    path: "/*",
+    element: <PageNotFound />,
+    private: false,
+  },
 ];
 
 export default routers;
