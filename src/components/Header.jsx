@@ -41,7 +41,7 @@ function Header(props) {
         </button>
       </section>
 
-      <h1>{user ? user.name : ''}</h1>
+      {/* <h1>{user ? user.name : ''}</h1> */}
 
       <section className="header__user">
         {token === null ? (
@@ -62,26 +62,31 @@ function Header(props) {
               Đăng nhập
             </button>
           </div>
-        ) : (
-          <div>
-            <button
-              onClick={() => {
-                navigate("/profile");
-              }}
-            >
-              Tài khoản của bạn
-            </button>
-            <span style={{ color: "#fff" }}>|</span>
-            <button
-              onClick={() => {
-                localStorage.removeItem("token");
-                navigate("/");
-              }}
-            >
-              Đăng xuất
-            </button>
-          </div>
-        )}
+        ) :
+      <h1>{user ? user.name : ''}</h1>
+        // dùng tippy .
+
+        // (
+        //   <div>
+        //     <button
+        //       onClick={() => {
+        //         navigate("/profile");
+        //       }}
+        //     >
+        //       Tài khoản của bạn
+        //     </button>
+        //     <span style={{ color: "#fff" }}>|</span>
+        //     <button
+        //       onClick={() => {
+        //         localStorage.removeItem("token");
+        //         navigate("/");
+        //       }}
+        //     >
+        //       Đăng xuất
+        //     </button>
+        //   </div>
+        // )
+        }
       </section>
     </div>
   );

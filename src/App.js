@@ -13,7 +13,7 @@ function App() {
   const [token, setToken] = useState(() => localStorage.getItem("token"));
 
   useEffect(() => {
-    console.log('runnn', token);
+    // console.log('runnn', token);
     if (token) {
       getUser();
     } else {

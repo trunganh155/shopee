@@ -16,6 +16,7 @@ function Product({product}) {
                 </Link>
             </div>
             <div className='product__price'>{product.price}</div>
+            <div >đã bán</div>
         </div>
     );
 }

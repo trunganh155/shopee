@@ -30,6 +30,7 @@ function CategoryItem(props) {
 
       const { data } = await axios({
         url: endpoint,
+        method: 'get',
         headers: {},
         data: {},
       });
