@@ -144,9 +144,9 @@ export default function Login() {
           </div>
 
           <div className="or">
-            <div class="line"></div>
+            <div className="line"></div>
             <span>Hoặc</span>
-            <div class="line"></div>
+            <div className="line"></div>
           </div>
 
           <div className="or_container">

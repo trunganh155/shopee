@@ -2,6 +2,7 @@ import axios from "axios";
 // import { set } from "immer/dist/internal";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Header from "../components/Header";
 import Loading from "../components/Loading";
 import Product from "../components/Product";
 import "../styles/CategoryItem.scss";
@@ -42,19 +43,25 @@ function CategoryItem(props) {
   };
 
   return (
-    <div className="container">
-      {/* <h4>{"Category: " + id}</h4> */}
-      <h1>Category Item sản phẩm</h1>
-
-      {loading ? (
-        <Loading />
-      ) : (
-        <div className="category-item__list">
-          {categoryItem.items.map((value, index) => (
-              <Product key={index} product={value} />
-          ))}
+    <div >
+      <Header />
+      
+      <div className="category-item__main">
+        <div className="container">
+          {/* <h4>{"Category: " + id}</h4> */}
+          <div className="category-item__title">Category Item sản phẩm:</div>
+    
+          {loading ? (
+            <Loading />
+          ) : (
+            <div className="category-item__list">
+              {categoryItem.items.map((value, index) => (
+                  <Product key={index} product={value} />
+              ))}
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }

@@ -34,7 +34,6 @@ function Search(props) {
         data: {},
       });
 
-      console.log(data);
       setData(data);
 
     } catch (error) {

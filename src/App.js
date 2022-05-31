@@ -35,7 +35,6 @@ function App() {
       const action = setUser(res.data);
       dispatch(action);
 
-
     } catch (error) {
       console.log(error);
     }
