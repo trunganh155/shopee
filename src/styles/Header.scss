@@ -28,13 +28,12 @@
         & span {
             color: #ccc;
             opacity: 0.8;
-            // padding: 0px 4px;
+            padding: 0px 4px;
             user-select: none;
         }
 
         & svg {
             color: #fff;
-            font-size: 18px;
             cursor: pointer;
 
             &:hover {
@@ -44,14 +43,16 @@
 
         & .fb {
             position: absolute;
-            bottom: 0;
-            right: -6%;
+            bottom: 4px;
+            right: -10%;
+            font-size: 19px;
         }
 
         & .ig {
             position: absolute;
-            bottom: 0;
-            right: -14%;
+            bottom: 3px;
+            right: -19%;
+            font-size: 20px;
         }
     }
 
@@ -157,7 +158,7 @@
         & span {
             color: #ccc;
             opacity: 0.8;
-            // padding: 0px 4px;
+            padding: 0px 4px;
             user-select: none;
         }
     }

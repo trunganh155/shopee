@@ -5,9 +5,13 @@ import logoWhite from "../assets/images/logoWhite.png";
 import { GoSearch } from "react-icons/go";
 import { AiFillInstagram, AiFillFacebook } from "react-icons/ai";
 import { CgShoppingCart } from "react-icons/cg";
+import { useSelector } from "react-redux";
 
 function Header(props) {
   const navigate = useNavigate();
+
+  const { user } = useSelector(state => state.userReducer);
+
   const token = localStorage.getItem("token");
   const [search, setSearch] = useState("");
 
@@ -59,6 +63,7 @@ function Header(props) {
       <section className="header__cart">
         <CgShoppingCart />
       </section>
+      <h1>{user ? user.name : ''}</h1>
 
       <section className="header__user">
         {token === null ? (
