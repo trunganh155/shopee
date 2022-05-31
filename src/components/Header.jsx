@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Header.scss";
 import logoWhite from "../assets/images/logoWhite.png";
 import { GoSearch } from "react-icons/go";
+import { AiFillInstagram, AiFillFacebook } from "react-icons/ai";
+import { CgShoppingCart } from "react-icons/cg";
 
 function Header(props) {
   const navigate = useNavigate();
@@ -11,6 +13,12 @@ function Header(props) {
 
   const handleSearch = () => {
     navigate("/search?keyword=" + search);
+  };
+
+  const handleKeypress = (e) => {
+    if (e.charCode === 13) {
+      handleSearch();
+    }
   };
 
   return (
@@ -31,10 +39,25 @@ function Header(props) {
           onChange={(e) => {
             setSearch(e.target.value);
           }}
+          onKeyPress={handleKeypress}
         />
         <button className="btnSearch" onClick={handleSearch}>
           <GoSearch />
         </button>
+      </section>
+
+      <section className="header__option">
+        <button>Kênh người bán</button>
+        <span>|</span>
+        <button>Tải ứng dụng</button>
+        <span>|</span>
+        <button>Kết nối</button>
+        <AiFillFacebook className="fb" />
+        <AiFillInstagram className="ig" />
+      </section>
+
+      <section className="header__cart">
+        <CgShoppingCart />
       </section>
 
       <section className="header__user">
@@ -47,7 +70,7 @@ function Header(props) {
             >
               Đăng ký
             </button>
-            <span style={{ color: "#fff" }}>|</span>
+            <span>|</span>
             <button
               onClick={() => {
                 navigate("/login");
@@ -65,7 +88,7 @@ function Header(props) {
             >
               Tài khoản của bạn
             </button>
-            <span style={{ color: "#fff" }}>|</span>
+            <span>|</span>
             <button
               onClick={() => {
                 localStorage.removeItem("token");
