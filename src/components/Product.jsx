@@ -1,24 +1,21 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-function Product({product}) {
-    return (
-        <div className='product'>
-            <div className='product__image'>
-                <Link to={'/product/'+ product._id}>
-                    <img  src={product.image} alt="" />
-                </Link>
-                
-            </div>
-            <div className='product__name'>
-                <Link to={'/product/'+ product._id}>
-                    {product.name}
-                </Link>
-            </div>
-            <div className='product__price'>{product.price}</div>
-            <div >đã bán</div>
-        </div>
-    );
+function Product({ product }) {
+  return (
+    <div className="col-2-5">
+      <div className="product">
+        <Link to={"/product/" + product._id}>
+          <div className="product__image">
+            <img src={product.image} alt="" />
+          </div>
+          <div className="product__name">{product.name}</div>
+          <div className="product__price">{product.price}</div>
+          <div>còn hàng</div>
+        </Link>
+      </div>
+     </div>
+  );
 }
 
 export default Product;

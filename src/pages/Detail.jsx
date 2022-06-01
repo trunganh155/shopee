@@ -80,10 +80,8 @@ function Detail(props) {
 
     return (
         <div>
-            <Header />
-
             <div className='container'>
-                <div className='product-detail-container'>
+                <div className='product-detail-container' style={{marginTop: '100px'}}>
                     <div className='box-image'>
                         <div className='gallery-item item-main'>
                             <img src={product.image} />

@@ -63,7 +63,7 @@ function Header(props) {
             </button>
           </div>
         ) :
-      <h1>{user ? user.name : ''}</h1>
+      <div className="header__user-name">{user ? user.name : ''}</div>
         // dùng tippy .
 
         // (
