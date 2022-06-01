@@ -3,17 +3,18 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import Header from "./components/Header";
 import PrivateRouter from "./components/PrivateRouter";
 import { removeUser, setUser } from "./redux/_user";
 import routers from "./routers/router";
 
 function App() {
   const dispatch = useDispatch();
-  const {user} = useSelector(state => state.userReducer);
+  const { user } = useSelector((state) => state.userReducer);
   const [token, setToken] = useState(() => localStorage.getItem("token"));
 
   useEffect(() => {
-    console.log('runnn', token);
+    // console.log('runnn', token);
     if (token) {
       getUser();
     } else {
@@ -34,8 +35,6 @@ function App() {
 
       const action = setUser(res.data);
       dispatch(action);
-
-
     } catch (error) {
       console.log(error);
     }
@@ -44,6 +43,8 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <Header />
+
         <Routes>
           {routers.map((route, index) => (
             <Route
@@ -59,6 +60,7 @@ function App() {
             />
           ))}
         </Routes>
+        
       </BrowserRouter>
     </div>
   );
