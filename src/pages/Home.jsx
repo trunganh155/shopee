@@ -1,18 +1,20 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import Category from "../components/Category";
 import Header from "../components/Header";
 
 export default function Home() {
   return (
-    <div
-      style={{
-        height: "1500px",
-        backgroundColor: "gray",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
+    <div>
       <Header />
-      <span>Trang chủ</span>
+      <div
+        style={{
+          height: "1500px",
+          paddingTop: "150px",
+        }}
+      >
+        <span>Trang chủ</span>
+      </div>
     </div>
   );
 }

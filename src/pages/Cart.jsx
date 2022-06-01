@@ -13,9 +13,8 @@ const URL = 'https://k24-server-1.herokuapp.com'
 
 function Cart(props) {
     const [products, setProducts] = useState([])
-    // const [quantity, setQuantity] = useState(0)
-    // const [totalPrice, setTotalPrice] = useState(0)
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token")
+    const [disabled, setDisabled] = useState(false)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -40,14 +39,18 @@ function Cart(props) {
         }
     }
 
-    const dataUpdate = products.map(product => {
-        return (
-            {
-                product: product.product._id,
-                quantity: product.quantity
-            }
-        )
-    })
+    const convertData = () => {
+        return products.map(product => {
+            return (
+                {
+                    product: product.product._id,
+                    quantity: product.quantity
+                }
+            )
+        })
+    }
+
+    
 
     const apiUpdateQuantity = async (products, product) => {
         try {
@@ -71,24 +74,56 @@ function Cart(props) {
         }
     }
 
-    const decreaseQuantity = (product) => {
-        apiUpdateQuantity(dataUpdate, { product: product.product._id, quantity: product.quantity - 1 })
-        getProduct()
+    const decreaseQuantity = async (product) => {
+        setDisabled(true)
+        await apiUpdateQuantity(convertData(), { product: product.product._id, quantity: product.quantity - 1 })
+        await getProduct()
+        setDisabled(false)
     }
 
-    const increaseQuantity = (product) => {
-        apiUpdateQuantity(dataUpdate, { product: product.product._id, quantity: product.quantity + 1 })
-        getProduct()
+    const increaseQuantity = async (product) => {
+        setDisabled(true)
+        await apiUpdateQuantity(convertData(), { product: product.product._id, quantity: product.quantity + 1 })
+        await getProduct()
+        setDisabled(false)
     }
 
     const updateQuantity = () => {
 
     }
 
-    let totalPrice = 0
-    products.forEach((product) => {
-        return totalPrice += (product.product.price * product.quantity)
-    })
+    const deleteProduct = async (product) => {
+        try {
+            const resultfilter = products.filter(productItem => {
+                return productItem.product !== product.product
+            })
+            await axios(
+            {
+                method: "PUT",
+                url: URL + "/cart",
+                headers: {
+                    "Content-Type": "application/json",
+                    token: token,
+                },
+                data: {
+                    products: resultfilter
+                }
+            })
+            await getProduct()
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
+    const totalPrice = () => {
+        let totalPrice = 0
+        products.forEach((product) => {
+            return totalPrice += (product.product.price * product.quantity)
+        })
+        return totalPrice
+    }
+
+    
     
     if(products.length === 0) {
         return <Loading />
@@ -101,7 +136,7 @@ function Cart(props) {
                         src={logo2}
                         alt="logo"
                         onClick={() => {
-                        navigate("/");
+                            navigate("/");
                         }}
                     />
                     <h2>Giỏ Hàng</h2>
@@ -167,6 +202,7 @@ function Cart(props) {
                                                     <button 
                                                         className="_3Ell0h" 
                                                         onClick={() => { decreaseQuantity(product) }}
+                                                        disabled={disabled}
                                                     >
                                                         <UilMinus />
                                                     </button>
@@ -175,10 +211,12 @@ function Cart(props) {
                                                         className="_3Ell0h _37H5-t" 
                                                         value={product.quantity}
                                                         onChange={() => { updateQuantity(product.product) }}
+                                                        disabled={disabled}
                                                     />
                                                     <button 
                                                         className="_3Ell0h" 
                                                         onClick={() => { increaseQuantity(product) }}
+                                                        disabled={disabled}
                                                     >
                                                         <UilPlus />
                                                     </button>
@@ -188,7 +226,7 @@ function Cart(props) {
                                                 <span>{(product.product.price * product.quantity).toFixed(2)}</span>
                                             </div>
                                             <div className="_1-z5aG _1AeN8q">
-                                                <button>
+                                                <button onClick={() => deleteProduct(product)}>
                                                     <UilTrashAlt />
                                                 </button>
                                                 <button>
@@ -203,7 +241,7 @@ function Cart(props) {
                     })}
                     <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
                         <span></span>
-                        <span>{totalPrice}</span>
+                        <span>{totalPrice()}</span>
                         <button className="btn-buy"> Mua Hàng </button>
                     </div>
                     
