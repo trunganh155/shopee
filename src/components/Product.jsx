@@ -10,7 +10,7 @@ function Product({ product }) {
             <img src={product.image} alt="" />
           </div>
           <div className="product__name">{product.name}</div>
-          <div className="product__price">{product.price}</div>
+          <div className="product__price">{product.price.toLocaleString()}đ</div>
           <div>còn hàng</div>
         </Link>
       </div>

@@ -55,11 +55,15 @@ function CategoryItem(props) {
           {loading ? (
             <Loading />
           ) : (
-            <div className="category-item__list">
-              {categoryItem.items.map((value, index) => (
-                  <Product key={index} product={value} />
-              ))}
-            </div>
+            <div className="container">
+              <div className="row">
+                <div className="category-item__list">
+                  {categoryItem.items.map((value, index) => (
+                      <Product key={index} product={value} />
+                  ))}
+                </div>
+              </div>
+              </div>
           )}
         </div>
       </div>

@@ -23,7 +23,7 @@ export default function Home() {
   const loadProductList = async () => {
     setLoading(true);
     try {
-      const endpoint = "https://k24-server-1.herokuapp.com/" + "product";
+      const endpoint = "https://k24-server-1.herokuapp.com/" + "product" + "";
 
       const { data } = await axios({
         url: endpoint,
@@ -51,7 +51,7 @@ export default function Home() {
     >
 
       <div className="container">
-        <div className="home-banner" style={{marginTop: '100px'}}>
+        <div className="home-banner" style={{ marginTop: '100px', paddingTop: '20px'}}>
           <img style={{ width: '100%'}} src="https://cf.shopee.com.my/file/5e7d031649e162ee1b4fa73bc686bb43" alt="home-banner" />
         </div>
       </div>

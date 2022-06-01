@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Loading from "../components/Loading";
 import Product from "../components/Product";
@@ -70,7 +71,6 @@ function Search(props) {
         marginBottom: "100px",
       }}
     >
-      <Header />
 
       {
         // loading ? (
@@ -86,6 +86,8 @@ function Search(props) {
       }
 
       {Pagination}
+
+      {/* <Footer /> */}
     </div>
   );
 }
