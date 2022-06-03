@@ -1,15 +1,19 @@
 $color--red: #ee4d2d;
 $color--white: #ffffff;
 
-*{
-    box-sizing: border-box;
-}
-
 .header-cart {
     border-bottom: 1px solid #d3d3d3;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0;
+
+    & img {
+        width: 50%;
+        padding-top: 15px;
+        padding-bottom: 24px;
+        cursor: pointer;
+    }
+
     & h2 {
         color: $color--red;
         font-weight: 500;
@@ -18,17 +22,15 @@ $color--white: #ffffff;
         border-left: 1px solid $color--red;
     }
 
-    
     & .searchbar {
         display: flex;
         border: 3px solid $color--red;
         position: relative;
         border-top-right-radius: 4px;
         border-bottom-right-radius: 4px;
+        width: 50%;
         & .searchbar-main {
-            
             & .searchbar-input {
-                
                 & input {
                     padding: 10px 18px;
                     border: none;
@@ -37,7 +39,7 @@ $color--white: #ffffff;
                     font-size: 18px;
                 }
             }
-        } 
+        }
 
         & button {
             background-color: $color--red;
@@ -53,7 +55,6 @@ $color--white: #ffffff;
             height: 104%;
         }
     }
-
 }
 
 .content-product {
@@ -77,7 +78,7 @@ $color--white: #ffffff;
             color: #888;
             padding: 0 20px;
             ._2cHnzN {
-                color: rgba(0,0,0,.8);
+                color: rgba(0, 0, 0, 0.8);
                 width: 46.27949%;
                 text-align: left;
             }
@@ -101,7 +102,7 @@ $color--white: #ffffff;
         ._1glehh {
             background-color: #fff;
             .iT6kEc {
-                border: 1px solid rgba(0,0,0,.09);
+                border: 1px solid rgba(0, 0, 0, 0.09);
                 border-radius: 4px;
                 margin: 22px 0px;
                 .VXs3As {
@@ -110,7 +111,7 @@ $color--white: #ffffff;
                 }
                 ._1BehlF {
                     text-decoration: none;
-                    color: rgba(0,0,0,.87);
+                    color: rgba(0, 0, 0, 0.87);
                     display: block;
                     padding: 0 20px 15px;
                     margin-top: 15px;
@@ -142,7 +143,7 @@ $color--white: #ffffff;
                                 overflow: hidden;
                                 ._3t5Sij {
                                     text-decoration: none;
-                                    color: rgba(0,0,0,.87);
+                                    color: rgba(0, 0, 0, 0.87);
                                     display: block;
                                     margin-bottom: 5px;
                                     max-height: 32px;
@@ -181,18 +182,18 @@ $color--white: #ffffff;
                             outline: none;
                             cursor: pointer;
                             border: 0;
-                            font-size: .875rem;
+                            font-size: 0.875rem;
                             font-weight: 300;
                             line-height: 1;
                             letter-spacing: 0;
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            transition: background-color .1s cubic-bezier(.4,0,.6,1);
-                            border: 1px solid rgba(0,0,0,.09);
+                            transition: background-color 0.1s cubic-bezier(0.4, 0, 0.6, 1);
+                            border: 1px solid rgba(0, 0, 0, 0.09);
                             border-radius: 2px;
                             background: transparent;
-                            color: rgba(0,0,0,.8);
+                            color: rgba(0, 0, 0, 0.8);
                             width: 32px;
                             height: 32px;
                         }

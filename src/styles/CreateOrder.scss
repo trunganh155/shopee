@@ -1,5 +1,12 @@
 header {
-    padding: 0;
+    padding: 0 8%;
+
+    & img {
+        width: 50%;
+        padding-top: 15px;
+        padding-bottom: 24px;
+        cursor: pointer;
+    }
 }
 
 header span {
@@ -19,7 +26,17 @@ header span {
     width: 100%;
     background-position-x: -30px;
     background-size: 116px 3px;
-    background-image: repeating-linear-gradient(45deg, #6fa6d6, #6fa6d6 33px, transparent 0, transparent 41px, #f18d9b 0, #f18d9b 74px, transparent 0, transparent 82px);
+    background-image: repeating-linear-gradient(
+        45deg,
+        #6fa6d6,
+        #6fa6d6 33px,
+        transparent 0,
+        transparent 41px,
+        #f18d9b 0,
+        #f18d9b 74px,
+        transparent 0,
+        transparent 82px
+    );
 }
 
 .box__Cart {
@@ -94,7 +111,6 @@ header span {
 
 .justify-content-center {
     justify-content: center;
-
 }
 
 .cart_title_header span {
@@ -104,13 +120,13 @@ header span {
     color: #bbb;
 }
 
-//Cart detail 
+//Cart detail
 
-.main_Cart{
+.main_Cart {
     padding-top: 70px;
 }
 
-.thumnail-img{
+.thumnail-img {
     width: 40px;
     aspect-ratio: auto 40 / 40;
     height: 40px;
@@ -152,7 +168,7 @@ header span {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px dashed rgba(0, 0, 0, .09);
+    border-top: 1px dashed rgba(0, 0, 0, 0.09);
 }
 
 button.btnCreateOrder {
@@ -163,8 +179,8 @@ button.btnCreateOrder {
     justify-content: center;
     align-self: flex-start;
     /* background: #fff; */
-    border: 1px solid rgba(0, 0, 0, .09);
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .03);
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.03);
     border-radius: 2px !important;
     text-transform: capitalize;
     outline: none;

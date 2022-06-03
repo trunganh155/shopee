@@ -1,8 +1,8 @@
 import React from "react";
-import "../assets2/css/base.css";
-import "../assets2/css/grid.css";
-import "../assets2/css/main.css";
-import "../assets2/css/responsive.css";
+import "../styles/Footer/base.scss";
+import "../styles/Footer/grid.scss";
+import "../styles/Footer/main.scss";
+import "../styles/Footer/responsive.scss";
 import { BsFacebook } from "react-icons/bs";
 import { AiFillInstagram, AiFillLinkedin } from "react-icons/ai";
 
@@ -132,9 +132,7 @@ function Footer(props) {
         </div>
         <div className="footer__bottom">
           <div className="grid wide">
-            <p className="footer__text">
-              © 2022 - Bản quyền thuộc về Tran Luan
-            </p>
+            <p className="footer__text">© 2022 - Bản quyền thuộc về TTA</p>
           </div>
         </div>
       </footer>

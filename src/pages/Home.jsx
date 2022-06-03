@@ -23,7 +23,7 @@ export default function Home() {
   const loadProductList = async () => {
     setLoading(true);
     try {
-      const endpoint = "https://k24-server-1.herokuapp.com/" + "product" + "";
+      const endpoint = process.env.REACT_APP_API_BACKEND + "/product" + "";
 
       const { data } = await axios({
         url: endpoint,
@@ -41,44 +41,54 @@ export default function Home() {
   };
 
   return (
-    <div
-      style={{
-        height: "1500px",
-        backgroundColor: "#F5F5F5",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
+    <>
+      <Header />
 
-      <div className="container">
-        <div className="home-banner" style={{ marginTop: '100px', paddingTop: '20px'}}>
-          <img style={{ width: '100%'}} src="https://cf.shopee.com.my/file/5e7d031649e162ee1b4fa73bc686bb43" alt="home-banner" />
+      <div
+        style={{
+          height: "1500px",
+          backgroundColor: "#F5F5F5",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <div className="container">
+          <div
+            className="home-banner"
+            style={{ marginTop: "120px", paddingTop: "20px" }}
+          >
+            <img
+              style={{ width: "100%" }}
+              src="https://cf.shopee.com.my/file/5e7d031649e162ee1b4fa73bc686bb43"
+              alt="home-banner"
+            />
+          </div>
         </div>
+
+        <Category />
+
+        {loading ? (
+          <Loading />
+        ) : (
+          <div className="product-home__main container">
+            <div className="product-home__header">
+              <div className="product-home__today">
+                <h3 className="product-home__title">GỢI Ý HÔM NAY</h3>
+              </div>
+            </div>
+
+            <div className="product-home__list">
+              <div className="row">
+                {productList.items.map((productItem, index) => (
+                  <Product key={index} product={productItem} />
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        <Footer />
       </div>
-
-      <Category />
-
-      {loading ? (
-        <Loading />
-      ) : (
-        <div className="product-home__main container">
-          <div className="product-home__header">
-            <div className="product-home__today">
-              <h3 className="product-home__title">GỢI Ý HÔM NAY</h3>
-            </div>
-          </div>
-
-          <div className="product-home__list">
-            <div className="row" >
-              {productList.items.map((productItem, index) => (
-                <Product key={index} product={productItem} />
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
-      <Footer />
-    </div>
+    </>
   );
 }

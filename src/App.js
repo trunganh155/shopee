@@ -2,8 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
-import Header from "./components/Header";
 import PrivateRouter from "./components/PrivateRouter";
 import { removeUser, setUser } from "./redux/_user";
 import routers from "./routers/router";
@@ -38,8 +36,6 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
-
         <Routes>
           {routers.map((route, index) => (
             <Route
@@ -55,7 +51,6 @@ function App() {
             />
           ))}
         </Routes>
-        
       </BrowserRouter>
     </div>
   );

@@ -2,6 +2,7 @@ import axios from "axios";
 // import { set } from "immer/dist/internal";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Loading from "../components/Loading";
 import Product from "../components/Product";
@@ -25,12 +26,12 @@ function CategoryItem(props) {
   const loadCategoryItem = async () => {
     setLoading(true);
     try {
-      const endpoint =
-        "https://k24-server-1.herokuapp.com/category/" + id + "/product";
+      const url =
+        process.env.REACT_APP_API_BACKEND + "/category/" + id + "/product";
 
       const { data } = await axios({
-        url: endpoint,
-        method: 'get',
+        url: url,
+        method: "get",
         headers: {},
         data: {},
       });
@@ -44,14 +45,12 @@ function CategoryItem(props) {
   };
 
   return (
-    <div >
+    <div>
       <Header />
-      
+
       <div className="category-item__main">
         <div className="container">
-          {/* <h4>{"Category: " + id}</h4> */}
           <div className="category-item__title">Category Item sản phẩm:</div>
-    
           {loading ? (
             <Loading />
           ) : (
@@ -59,14 +58,16 @@ function CategoryItem(props) {
               <div className="row">
                 <div className="category-item__list">
                   {categoryItem.items.map((value, index) => (
-                      <Product key={index} product={value} />
+                    <Product key={index} product={value} />
                   ))}
                 </div>
               </div>
-              </div>
+            </div>
           )}
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }

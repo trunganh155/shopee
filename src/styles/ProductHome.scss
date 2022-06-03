@@ -3,7 +3,8 @@
 }
 
 .product-home__header {
-    background-color: white;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.1);
 }
 
 .product-home__today {
@@ -13,11 +14,10 @@
 }
 
 .product-home__title {
-    color: rgb(238, 77, 45); 
+    color: rgb(238, 77, 45);
 }
 
 .col-2-4 {
     flex: 0 0 auto;
     width: 20%;
 }
-

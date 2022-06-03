@@ -39,7 +39,7 @@ export default function Register() {
         setLoading(true);
         await axios({
           method: "post",
-          url: "https://k24-server-1.herokuapp.com/user",
+          url: process.env.REACT_APP_API_BACKEND + "/user",
           data: {
             phone: data.phone,
             name: data.name,
@@ -63,7 +63,7 @@ export default function Register() {
 
   return (
     <div>
-      <header>
+      <header className="header__2">
         <div style={{ display: "flex", alignItems: "center", width: 300 }}>
           <img
             src={logo2}

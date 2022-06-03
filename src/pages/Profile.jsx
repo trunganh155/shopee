@@ -52,7 +52,7 @@ export default function Profile() {
       const token = localStorage.getItem("token");
       await axios({
         method: "put",
-        url: "https://k24-server-1.herokuapp.com/user",
+        url: process.env.REACT_APP_API_BACKEND + "/user",
         data: {
           name: data.name,
           address: data.address,
@@ -78,7 +78,7 @@ export default function Profile() {
   return (
     <div>
       <Header />
-      <div className="container">
+      <div className="container-profile">
         {loading && <Loading />}
         <div className="profile">
           <section className="profile__title">

@@ -10,7 +10,7 @@
 
     &__option {
         position: absolute;
-        top: 0;
+        top: 5px;
         left: 8%;
 
         & button {
@@ -122,27 +122,43 @@
     }
 
     &__cart {
-        & svg {
-            position: absolute;
-            top: 60%;
-            right: 8%;
-            transform: translateY(-50%);
+        position: absolute;
+        top: 60%;
+        right: 8%;
+        transform: translateY(-50%);
+        cursor: pointer;
 
+        & svg {
             font-size: 35px;
             color: #fff;
-            cursor: pointer;
+            // cursor: pointer;
+        }
 
-            &:hover {
-                opacity: 0.75;
-            }
+        & .quantity {
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: translate(30%, -10%);
+            width: 18px;
+            height: 18px;
+
+            background-color: #fff;
+            font-size: 13px;
+            font-weight: bold;
+            color: #ee4d2d;
+            text-align: center;
+            border-radius: 50%;
+        }
+
+        &:hover {
+            opacity: 0.75;
         }
     }
 
     &__user {
         position: absolute;
-        top: 20px;
-        right: 55px;
-        transform: translate(-50%, -50%);
+        top: 5px;
+        right: 8%;
 
         & button {
             background-color: transparent;
@@ -164,9 +180,26 @@
             user-select: none;
         }
 
-        &-name {
-            color: white;
-            font-weight: bold;
+        &__avt {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            & img {
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                object-fit: cover;
+                cursor: pointer;
+            }
+
+            & .username {
+                color: #fff;
+                font-size: 13px;
+                opacity: 1;
+                cursor: pointer;
+            }
         }
     }
 }
@@ -198,20 +231,28 @@
         }
 
         &__logo {
+            position: absolute;
+            top: 5px;
             left: 5%;
+            transform: translateY(0%);
+            width: 68px;
+
+            & img {
+                width: 100%;
+            }
         }
 
         &__search {
             position: absolute;
-            top: 60%;
-            left: 70%;
+            top: 70%;
+            left: 50%;
             transform: translate(-50%, -50%);
-            width: 40%;
+            width: 80%;
             height: 40%;
 
             & input {
                 padding-left: 10px;
-                padding-right: 50px;
+                padding-right: 20%;
             }
 
             & .btnSearch {
@@ -228,19 +269,32 @@
         }
 
         &__cart {
-            & svg {
-                position: absolute;
-                top: 12px;
-                right: 5%;
+            position: absolute;
+            top: 5px;
+            right: 16%;
+            transform: translateY(0%);
 
-                font-size: 18px;
+            & svg {
+                font-size: 30px;
                 color: #fff;
                 cursor: pointer;
             }
         }
 
         &__user {
-            right: 10%;
+            position: absolute;
+            top: 5px;
+            right: 5%;
+            &__avt {
+                & img {
+                    width: 30px;
+                    height: 30px;
+                }
+
+                & .username {
+                    display: none;
+                }
+            }
         }
     }
 }

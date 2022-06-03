@@ -9,11 +9,10 @@ import "../styles/Header.scss";
 
 function Header(props) {
   const navigate = useNavigate();
-
-  const { user } = useSelector((state) => state.userReducer);
-
   const token = localStorage.getItem("token");
   const [search, setSearch] = useState("");
+
+  const { user } = useSelector((state) => state.userReducer);
 
   const handleSearch = () => {
     navigate("/search?keyword=" + search);
@@ -59,7 +58,6 @@ function Header(props) {
         </button>
       </section>
 
-      {/* <h1>{user ? user.name : ''}</h1> */}
       <section className="header__option">
         <button>Kênh người bán</button>
         <span>|</span>
@@ -72,9 +70,8 @@ function Header(props) {
 
       <section className="header__cart">
         <CgShoppingCart onClick={handleCart} />
+        <span className="quantity">3</span>
       </section>
-
-      {/* <h1>{user ? user.name : ""}</h1> */}
 
       <section className="header__user">
         {
@@ -97,7 +94,24 @@ function Header(props) {
               </button>
             </div>
           ) : (
-            <div className="header__user-name">{user ? user.name : ""}</div>
+            <div className="header__user__avt">
+              <img
+                src={user && user.avatar}
+                alt=""
+                onClick={() => {
+                  navigate("/profile");
+                }}
+              />
+              <span
+                className="username"
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  navigate("/");
+                }}
+              >
+                {user && user.name}
+              </span>
+            </div>
           )
           // dùng tippy .
 
@@ -122,7 +136,7 @@ function Header(props) {
           //   </div>
           // )
         }
-        
+
         {/* ) : (
         <div>
           <button
@@ -143,7 +157,6 @@ function Header(props) {
           </button>
         </div>
         ) */}
-
       </section>
     </div>
   );

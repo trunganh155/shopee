@@ -11,7 +11,7 @@ import logo1 from "../assets/images/logoSP.png";
 import Loading from "../components/Loading";
 import "../styles/Login.scss";
 import { loginSchema } from "../validations/UserValidation";
-import {setUser} from '../redux/_user';
+import { setUser } from "../redux/_user";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -50,9 +50,8 @@ export default function Login() {
 
         if (token !== null) {
           setIsLogin(true);
-          await getUser(res.data.token)
+          await getUser(res.data.token);
           navigate("/");
-
         }
       } catch (error) {
         console.log(error);
@@ -65,10 +64,10 @@ export default function Login() {
 
   const getUser = async (token) => {
     try {
-      const endpoint = "https://k24-server-1.herokuapp.com/user";
+      const url = process.env.REACT_APP_API_BACKEND + "/user";
 
       const res = await axios({
-        url: endpoint,
+        url: url,
         method: "get",
         headers: { token },
       });
@@ -83,7 +82,7 @@ export default function Login() {
   return (
     <div>
       {loading && <Loading />}
-      <header>
+      <header className="header__2">
         <div style={{ display: "flex", alignItems: "center", width: 300 }}>
           <img
             src={logo2}

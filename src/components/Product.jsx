@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../styles/Product.scss";
 
 function Product({ product }) {
   return (
@@ -9,12 +10,18 @@ function Product({ product }) {
           <div className="product__image">
             <img src={product.image} alt="" />
           </div>
-          <div className="product__name">{product.name}</div>
-          <div className="product__price">{product.price.toLocaleString()}đ</div>
-          <div>còn hàng</div>
+
+          <span className="product-name">{product.name}</span>
+
+          <div className="product-info">
+            <span className="product-price">
+              {product.price.toLocaleString()}đ
+            </span>
+            <span className="product-solder">Đã bán 1.3k</span>
+          </div>
         </Link>
       </div>
-     </div>
+    </div>
   );
 }
 

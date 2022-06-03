@@ -1,12 +1,12 @@
 $color--red: #ee4d2d;
 $color--white: #ffffff;
 
-header {
+.header__2 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 200px;
+    padding: 0px 8%;
     & img {
         width: 50%;
         padding-top: 15px;
@@ -15,7 +15,8 @@ header {
     }
 
     & span {
-        font-size: 30px;
+        font-size: 20px;
+        color: #555;
     }
 
     & a {
@@ -30,6 +31,7 @@ header {
     justify-content: space-around;
     background-color: $color--red;
     padding: 60px 0px;
+    text-align: center;
 
     & .login__logo {
         & img {
@@ -196,11 +198,11 @@ header {
 /////////////////////////////////////////////////////////////////Tablet
 @media only screen and (min-width: 740px) and (max-width: 1023px) {
     header {
-        padding: 0px 100px;
+        padding: 0px 8%;
 
-        & span {
-            font-size: 22px;
-        }
+        // & span {
+        //     font-size: 22px;
+        // }
 
         & a {
             font-size: 14px;
@@ -226,20 +228,20 @@ header {
 
 /////////////////////////////////////////////////////////////Mobile
 @media only screen and (max-width: 739px) {
-    header {
-        padding: 0px 30px;
+    .header__2 {
+        padding: 0px 5%;
         & img {
-            width: 50%;
+            width: 40%;
             padding-top: 15px;
             padding-bottom: 24px;
         }
 
         & span {
-            font-size: 20px;
+            font-size: 16px;
         }
 
         & a {
-            font-size: 12px;
+            font-size: 10px;
         }
     }
 
