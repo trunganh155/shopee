@@ -115,11 +115,11 @@
         padding: 0 16px;
     }
     .footer__heading {
-        text-align: center;
+        text-align: left;
     }
     .footer__download,
     .footer-item__link {
-        justify-content: center;
+        justify-content: flex-start;
     }
     .footer__download-app-link {
         display: block;

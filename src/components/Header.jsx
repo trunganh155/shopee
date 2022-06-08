@@ -18,8 +18,6 @@ function Header(props) {
 
   const { cart } = useSelector((state) => state.cartReducer);
   const products = cart ? cart.products : []; //lay product tu redux
-  console.log(products);
-  console.log("cart" + cart);
 
   const handleSearch = () => {
     navigate("/search?keyword=" + search);

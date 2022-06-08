@@ -211,12 +211,13 @@
                     background-color: #fff;
                     border-radius: 4px;
                     overflow: hidden;
+                    box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.2);
 
                     .menu {
                         display: flex;
                         flex-direction: column;
                         width: 130px;
-                        height: 60px;
+                        height: 65px;
 
                         button {
                             width: 100%;
@@ -230,8 +231,8 @@
                         }
 
                         button:hover {
-                            background-color: #f9f9f9;
-                            color: #14c38e;
+                            background-color: #dfdfde;
+                            color: #ee4d2d;
                         }
                     }
                 }
@@ -240,7 +241,7 @@
 
         &__avt:hover {
             .username {
-                opacity: 0.7;
+                opacity: 0.5;
             }
 
             .menu-link {
@@ -345,7 +346,7 @@
                     .menu-link {
                         position: absolute;
                         top: 30px;
-                        left: -100px;   
+                        left: -100px;
                     }
                 }
             }

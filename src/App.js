@@ -8,50 +8,50 @@ import { setUser } from "./redux/_user";
 import routers from "./routers/router";
 
 function App() {
-  const dispatch = useDispatch();
-  const token = localStorage.getItem("token");
+  // const dispatch = useDispatch();
+  // const token = localStorage.getItem("token");
 
-  useEffect(() => {
-    if (token) {
-      getUser();
-      getCart();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (token) {
+  //     // getUser();
+  //     // getCart();
+  //   }
+  // }, []);
 
-  const getUser = async () => {
-    try {
-      const url = process.env.REACT_APP_API_BACKEND + "/user";
+  // const getUser = async () => {
+  //   try {
+  //     const url = process.env.REACT_APP_API_BACKEND + "/user";
 
-      const res = await axios({
-        url: url,
-        method: "get",
-        headers: { token: localStorage.getItem("token") },
-      });
+  //     const res = await axios({
+  //       url: url,
+  //       method: "get",
+  //       headers: { token: localStorage.getItem("token") },
+  //     });
 
-      const action = setUser(res.data);
-      dispatch(action);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     const action = setUser(res.data);
+  //     dispatch(action);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const getCart = async () => {
-    try {
-      const res = await axios({
-        method: "GET",
-        url: process.env.REACT_APP_API_BACKEND + "/cart",
-        headers: {
-          "Content-Type": "application/json",
-          token: token,
-        },
-      });
+  // const getCart = async () => {
+  //   try {
+  //     const res = await axios({
+  //       method: "GET",
+  //       url: process.env.REACT_APP_API_BACKEND + "/cart",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         token: token,
+  //       },
+  //     });
 
-      const action = setCart(res.data);
-      dispatch(action);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  //     const action = setCart(res.data);
+  //     dispatch(action);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
   return (
     <div className="App">

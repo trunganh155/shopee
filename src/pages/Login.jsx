@@ -13,6 +13,7 @@ import "../styles/Login.scss";
 import { loginSchema } from "../validations/UserValidation";
 import { setUser } from "../redux/_user";
 import { setCart } from "../redux/_cart";
+import Footer from "../components/Footer";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -99,124 +100,128 @@ export default function Login() {
   };
 
   return (
-    <div>
-      {loading && <Loading />}
-      <header className="header__2">
-        <div style={{ display: "flex", alignItems: "center", width: 300 }}>
-          <img
-            src={logo2}
-            alt="logo"
-            onClick={() => {
-              navigate("/");
-            }}
-          />
-          <span>Đăng nhập</span>
-        </div>
+    <>
+      <div>
+        {loading && <Loading />}
+        <header className="header__2">
+          <div style={{ display: "flex", alignItems: "center", width: 300 }}>
+            <img
+              src={logo2}
+              alt="logo"
+              onClick={() => {
+                navigate("/");
+              }}
+            />
+            <span>Đăng nhập</span>
+          </div>
 
-        <a href="#">Bạn cầu giúp đỡ?</a>
-      </header>
-      <div className="login">
-        <div className="login__logo">
-          <img src={logo1} alt="logo" />
-        </div>
+          <a href="#">Bạn cầu giúp đỡ?</a>
+        </header>
+        <div className="login">
+          <div className="login__logo">
+            <img src={logo1} alt="logo" />
+          </div>
 
-        <div className="login__form">
-          <span className="title">Đăng nhập</span>
-          {isLogin === false ? (
-            <div className="error_login">
-              <BiError />
-              <span>
-                Số điện thoại hoặc mật khẩu của bạn không đúng, vui lòng thử
-                lại.
+          <div className="login__form">
+            <span className="title">Đăng nhập</span>
+            {isLogin === false ? (
+              <div className="error_login">
+                <BiError />
+                <span>
+                  Số điện thoại hoặc mật khẩu của bạn không đúng, vui lòng thử
+                  lại.
+                </span>
+              </div>
+            ) : (
+              <></>
+            )}
+
+            <form className="form" onSubmit={formik.handleSubmit}>
+              <input
+                name="phone"
+                type="text"
+                placeholder="Số điện thoại"
+                value={formik.values.phone}
+                onChange={formik.handleChange}
+              />
+              {formik.errors.phone && formik.touched.phone && (
+                <p className="error">{formik.errors.phone}</p>
+              )}
+
+              <input
+                name="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Mật khẩu"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+              />
+              {formik.errors.password && formik.touched.password && (
+                <p className="error">{formik.errors.password}</p>
+              )}
+
+              <div className="showPassword">
+                {showPassword ? (
+                  <FaEyeSlash
+                    onClick={() => {
+                      setShowPassword(!showPassword);
+                    }}
+                  ></FaEyeSlash>
+                ) : (
+                  <FaEye
+                    onClick={() => {
+                      setShowPassword(!showPassword);
+                    }}
+                  ></FaEye>
+                )}
+              </div>
+
+              <button type="submit" className="btnLogin">
+                Đăng nhập
+              </button>
+            </form>
+
+            <div className="forgotPass">
+              <a href="#">Quên mật khẩu</a>
+              <a href="#">Đăng nhập với SMS</a>
+            </div>
+
+            <div className="or">
+              <div className="line"></div>
+              <span>Hoặc</span>
+              <div className="line"></div>
+            </div>
+
+            <div className="or_container">
+              <div className="or_items">
+                <FaFacebook style={{ color: "#125195" }} />
+                <span>Facebook</span>
+              </div>
+              <div className="or_items">
+                <FcGoogle />
+                <span>Google</span>
+              </div>
+              <div className="or_items">
+                <FaApple />
+                <span>Apple</span>
+              </div>
+            </div>
+
+            <div className="guest">
+              <span>Bạn mới biết đến Shopee? </span>
+              <span
+                className="navigate"
+                onClick={() => {
+                  navigate("/register");
+                }}
+              >
+                Đăng ký
               </span>
             </div>
-          ) : (
-            <></>
-          )}
-
-          <form className="form" onSubmit={formik.handleSubmit}>
-            <input
-              name="phone"
-              type="text"
-              placeholder="Số điện thoại"
-              value={formik.values.phone}
-              onChange={formik.handleChange}
-            />
-            {formik.errors.phone && formik.touched.phone && (
-              <p className="error">{formik.errors.phone}</p>
-            )}
-
-            <input
-              name="password"
-              type={showPassword ? "text" : "password"}
-              placeholder="Mật khẩu"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-            />
-            {formik.errors.password && formik.touched.password && (
-              <p className="error">{formik.errors.password}</p>
-            )}
-
-            <div className="showPassword">
-              {showPassword ? (
-                <FaEyeSlash
-                  onClick={() => {
-                    setShowPassword(!showPassword);
-                  }}
-                ></FaEyeSlash>
-              ) : (
-                <FaEye
-                  onClick={() => {
-                    setShowPassword(!showPassword);
-                  }}
-                ></FaEye>
-              )}
-            </div>
-
-            <button type="submit" className="btnLogin">
-              Đăng nhập
-            </button>
-          </form>
-
-          <div className="forgotPass">
-            <a href="#">Quên mật khẩu</a>
-            <a href="#">Đăng nhập với SMS</a>
-          </div>
-
-          <div className="or">
-            <div className="line"></div>
-            <span>Hoặc</span>
-            <div className="line"></div>
-          </div>
-
-          <div className="or_container">
-            <div className="or_items">
-              <FaFacebook style={{ color: "#125195" }} />
-              <span>Facebook</span>
-            </div>
-            <div className="or_items">
-              <FcGoogle />
-              <span>Google</span>
-            </div>
-            <div className="or_items">
-              <FaApple />
-              <span>Apple</span>
-            </div>
-          </div>
-
-          <div className="guest">
-            <span>Bạn mới biết đến Shopee? </span>
-            <span
-              className="navigate"
-              onClick={() => {
-                navigate("/register");
-              }}
-            >
-              Đăng ký
-            </span>
           </div>
         </div>
       </div>
-    </div>
+
+      <Footer />
+    </>
   );
 }
