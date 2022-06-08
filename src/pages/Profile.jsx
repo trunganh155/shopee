@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { IoCamera } from "react-icons/io5";
+import { useDispatch } from "react-redux";
 import Header from "../components/Header";
 import Loading from "../components/Loading";
+import { setUser } from "../redux/_user";
 import "../styles/Profile.scss";
 
 export default function Profile() {
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
   // const [avatar, setAvatar] = useState();
@@ -21,7 +24,7 @@ export default function Profile() {
       const token = localStorage.getItem("token");
       const res = await axios({
         method: "get",
-        url: "https://k24-server-1.herokuapp.com/user",
+        url: process.env.REACT_APP_API_BACKEND + "/user",
         headers: {
           "Content-Type": "application/json",
           token: token,
@@ -29,6 +32,10 @@ export default function Profile() {
       });
 
       setData(res.data);
+
+      //Cap nhat lai thong tin user moi nhat khi co thay doi de hien thi len header
+      const action = setUser(res.data);
+      dispatch(action);
     } catch (error) {
       console.log(error.message);
     } finally {

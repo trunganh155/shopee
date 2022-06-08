@@ -63,7 +63,7 @@ $color--white: #ffffff;
         margin: 0 auto;
         padding: 20px 0;
         width: 1200px;
-        ._2eZQze {
+        ._table {
             box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
             display: flex;
             align-items: center;
@@ -77,24 +77,24 @@ $color--white: #ffffff;
             margin-bottom: 12px;
             color: #888;
             padding: 0 20px;
-            ._2cHnzN {
+            ._product {
                 color: rgba(0, 0, 0, 0.8);
                 width: 46.27949%;
                 text-align: left;
             }
-            ._2UJcxH {
+            ._price {
                 width: 15.88022%;
                 text-align: center;
             }
-            ._1SKeIp {
+            ._qty {
                 width: 15.4265%;
                 text-align: center;
             }
-            ._2LUhSC {
+            ._sub-total {
                 text-align: center;
                 width: 10.43557%;
             }
-            .HHdkhO {
+            .remove {
                 width: 12.70417%;
                 text-align: center;
             }
@@ -165,7 +165,8 @@ $color--white: #ffffff;
                         flex-direction: column;
                         width: 15.88022%;
                         ._1E5-FE:last-child {
-                            margin: 0;
+                            // text-align: center;
+                            margin: 0 auto;
                         }
                     }
                     ._2vZsK0 {

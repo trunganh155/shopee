@@ -23,11 +23,28 @@
     border: none;
     background-color: #ee4d2d;
     padding: 0 30px;
+    text-transform: uppercase;
     color: #fff;
     border-radius: 3px;
 
     &:hover {
-        background-color: #df3b1a;
+        opacity: 0.9;
+    }
+}
+
+.btn-Login {
+    min-width: 200px;
+    height: 50px;
+    line-height: 40px;
+    border: none;
+    background-color: #ee4d2d;
+    padding: 0 30px;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 3px;
+
+    &:hover {
+        opacity: 0.9;
     }
 }
 

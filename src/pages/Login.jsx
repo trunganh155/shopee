@@ -12,6 +12,7 @@ import Loading from "../components/Loading";
 import "../styles/Login.scss";
 import { loginSchema } from "../validations/UserValidation";
 import { setUser } from "../redux/_user";
+import { setCart } from "../redux/_cart";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ export default function Login() {
         if (token !== null) {
           setIsLogin(true);
           await getUser(res.data.token);
+          await getCart(res.data.token);
           navigate("/");
         }
       } catch (error) {
@@ -73,6 +75,23 @@ export default function Login() {
       });
 
       const action = setUser(res.data);
+      dispatch(action);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getCart = async (token) => {
+    try {
+      const url = process.env.REACT_APP_API_BACKEND + "/cart";
+
+      const res = await axios({
+        url: url,
+        method: "get",
+        headers: { token },
+      });
+
+      const action = setCart(res.data);
       dispatch(action);
     } catch (error) {
       console.log(error);

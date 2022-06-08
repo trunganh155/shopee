@@ -9,7 +9,6 @@ import NumberFormat from "react-number-format";
 export default function CreateOrder() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  // const [isLogin, setIsLogin] = useState();
   const [token] = useState(() => localStorage.getItem("token"));
 
   const { user } = useSelector((state) => state.userReducer); // dùng để lấy dữ liệu từ slice

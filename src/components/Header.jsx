@@ -2,17 +2,24 @@ import React, { useState } from "react";
 import { AiFillFacebook, AiFillInstagram } from "react-icons/ai";
 import { CgShoppingCart } from "react-icons/cg";
 import { GoSearch } from "react-icons/go";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import logoWhite from "../assets/images/logoWhite.png";
+import { setCart } from "../redux/_cart";
 import "../styles/Header.scss";
 
 function Header(props) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   const [search, setSearch] = useState("");
 
   const { user } = useSelector((state) => state.userReducer);
+
+  const { cart } = useSelector((state) => state.cartReducer);
+  const products = cart ? cart.products : []; //lay product tu redux
+  console.log(products);
+  console.log("cart" + cart);
 
   const handleSearch = () => {
     navigate("/search?keyword=" + search);
@@ -70,93 +77,59 @@ function Header(props) {
 
       <section className="header__cart">
         <CgShoppingCart onClick={handleCart} />
-        <span className="quantity">3</span>
+        <span className="quantity">{products && products.length}</span>
       </section>
 
       <section className="header__user">
-        {
-          token === null ? (
-            <div>
-              <button
-                onClick={() => {
-                  navigate("/register");
-                }}
-              >
-                Đăng ký
-              </button>
-              <span>|</span>
-              <button
-                onClick={() => {
-                  navigate("/login");
-                }}
-              >
-                Đăng nhập
-              </button>
-            </div>
-          ) : (
-            <div className="header__user__avt">
-              <img
-                src={user && user.avatar}
-                alt=""
-                onClick={() => {
-                  navigate("/profile");
-                }}
-              />
-              <span
-                className="username"
-                onClick={() => {
-                  localStorage.removeItem("token");
-                  navigate("/");
-                }}
-              >
-                {user && user.name}
-              </span>
-            </div>
-          )
-          // dùng tippy .
+        {token === null ? (
+          <div>
+            <button
+              onClick={() => {
+                navigate("/register");
+              }}
+            >
+              Đăng ký
+            </button>
+            <span>|</span>
+            <button
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              Đăng nhập
+            </button>
+          </div>
+        ) : (
+          <div className="header__user__avt">
+            <img src={user && user.avatar} alt="" />
 
-          // (
-          //   <div>
-          //     <button
-          //       onClick={() => {
-          //         navigate("/profile");
-          //       }}
-          //     >
-          //       Tài khoản của bạn
-          //     </button>
-          //     <span style={{ color: "#fff" }}>|</span>
-          //     <button
-          //       onClick={() => {
-          //         localStorage.removeItem("token");
-          //         navigate("/");
-          //       }}
-          //     >
-          //       Đăng xuất
-          //     </button>
-          //   </div>
-          // )
-        }
+            <div className="drop-menu">
+              <span className="username">{user && user.name}</span>
 
-        {/* ) : (
-        <div>
-          <button
-            onClick={() => {
-              navigate("/profile");
-            }}
-          >
-            Tài khoản của bạn
-          </button>
-          <span>|</span>
-          <button
-            onClick={() => {
-              localStorage.removeItem("token");
-              navigate("/");
-            }}
-          >
-            Đăng xuất
-          </button>
-        </div>
-        ) */}
+              <div className="menu-link">
+                <div className="menu">
+                  <button
+                    onClick={() => {
+                      navigate("/profile");
+                    }}
+                  >
+                    Tài khoản của bạn
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      localStorage.removeItem("token");
+                      dispatch(setCart(null)); //reset cart trong redux khi dang xuat
+                      navigate("/");
+                    }}
+                  >
+                    Đăng xuất
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
     </div>
   );

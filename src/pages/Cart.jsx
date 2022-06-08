@@ -11,16 +11,15 @@ function Cart(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [disabled, setDisabled] = useState(false);
+
   const token = localStorage.getItem("token");
 
   const { cart } = useSelector((state) => state.cartReducer);
-
   const products = cart ? cart.products : [];
-  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     getProduct();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getProduct = async () => {
@@ -33,7 +32,7 @@ function Cart(props) {
           token: token,
         },
       });
-      // setProducts(data.data.products)
+
       const action = setCart(data.data);
       dispatch(action);
     } catch (error) {
@@ -144,30 +143,20 @@ function Cart(props) {
           />
           <h2>Giỏ Hàng</h2>
         </div>
-        {/* <div className="searchbar">
-          <div className="searchbar-main">
-            <form action="" className="searchbar-input">
-              <input type="text" placeholder="Siêu hội thời trang" />
-            </form>
-          </div>
-          <button>
-            <FaSearch />
-          </button>
-        </div> */}
       </header>
 
       <section className="content-product">
         <div className="content-product__main">
-          <div className="_2eZQze">
-            <div className="_2cHnzN">Sản phẩm</div>
-            <div className="_2UJcxH">Đơn giá</div>
-            <div className="_1SKeIp">Số lượng</div>
-            <div className="_2LUhSC">Số tiền</div>
-            <div className="HHdkhO">Thao tác</div>
+          <div className="_table">
+            <div className="_product">Sản phẩm</div>
+            <div className="_price">Đơn giá</div>
+            <div className="_qty">Số lượng</div>
+            <div className="_sub-total">Số tiền</div>
+            <div className="_remove">Thao tác</div>
           </div>
-          {products.map((product) => {
+          {products.map((product, index) => {
             return (
-              <div className="_1glehh" key={product.product._id}>
+              <div className="_1glehh" key={index}>
                 <div className="iT6kEc">
                   <div className="_1BehlF VXs3As">
                     <div className="_-0yJ2-">
@@ -198,7 +187,7 @@ function Cart(props) {
                             className="_3Ell0h"
                             onClick={() => {
                               decreaseQuantity(product);
-                              console.log(product.quantity);
+                              // console.log(product.quantity);
                             }}
                             disabled={
                               product.quantity && product.quantity === 1
@@ -210,6 +199,7 @@ function Cart(props) {
                           </button>
 
                           <input
+                            readOnly
                             type="text"
                             className="_3Ell0h _37H5-t"
                             value={product.quantity}

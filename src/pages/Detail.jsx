@@ -141,6 +141,7 @@ function Detail(props) {
                       </button>
                     ) : (
                       <button
+                        className="btn-Login"
                         onClick={() => {
                           navigate("/login");
                         }}
