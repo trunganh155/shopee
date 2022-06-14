@@ -73,8 +73,8 @@ function Header(props) {
         <AiFillInstagram className="ig" />
       </section>
 
-      <section className="header__cart">
-        <CgShoppingCart onClick={handleCart} />
+      <section className="header__cart" onClick={handleCart}>
+        <CgShoppingCart />
         <span className="quantity">{products && products.length}</span>
       </section>
 

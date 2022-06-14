@@ -65,8 +65,8 @@ export default function Profile() {
           address: data.address,
           //avatar: data.avatar,
           avatar:
-            // "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWFLP-G1MZF20B18zKRTYtngwjUnqFgPi9jA&usqp=CAU",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD3TDQBB-_F1sfu-gElz73vtUAdlOdLerHDw&usqp=CAU",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWFLP-G1MZF20B18zKRTYtngwjUnqFgPi9jA&usqp=CAU",
+            // "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD3TDQBB-_F1sfu-gElz73vtUAdlOdLerHDw&usqp=CAU",
         },
         headers: {
           "Content-Type": "application/json",
@@ -133,8 +133,9 @@ export default function Profile() {
             </section>
 
             <section className="profile__main__avatar">
-              <img src={data && data.avatar} alt="" />
               <div className="changeAvatar">
+                <img src={data && data.avatar} alt="" />
+
                 <IoCamera />
                 <input
                   type="file"

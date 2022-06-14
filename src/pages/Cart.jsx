@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import logo2 from "../assets/images/logo-2.png";
+import Footer from "../components/Footer";
 import { setCart } from "../redux/_cart";
 import "../styles/Cart.scss";
 
@@ -122,8 +123,8 @@ function Cart(props) {
 
   const totalPrice = () => {
     let totalPrice = 0;
-    products.forEach((product) => {
-      return (totalPrice += product.product.price * product.quantity);
+    products.forEach((item) => {
+      return (totalPrice += item.product.price * item.quantity);
     });
     return totalPrice;
   };
@@ -131,139 +132,146 @@ function Cart(props) {
   const updateQuantity = () => {};
 
   return (
-    <div>
-      <header className="header-cart">
-        <div style={{ display: "flex", alignItems: "center", width: 300 }}>
-          <img
-            src={logo2}
-            alt="logo"
-            onClick={() => {
-              navigate("/");
-            }}
-          />
-          <h2>Giỏ Hàng</h2>
-        </div>
-      </header>
-
-      <section className="content-product">
-        <div className="content-product__main">
-          <div className="_table">
-            <div className="_product">Sản phẩm</div>
-            <div className="_price">Đơn giá</div>
-            <div className="_qty">Số lượng</div>
-            <div className="_sub-total">Số tiền</div>
-            <div className="_remove">Thao tác</div>
+    <>
+      <div>
+        <header className="header-cart">
+          <div style={{ display: "flex", alignItems: "center", width: 300 }}>
+            <img
+              src={logo2}
+              alt="logo"
+              onClick={() => {
+                navigate("/");
+              }}
+            />
+            <h2>Giỏ Hàng</h2>
           </div>
-          {products.map((product, index) => {
-            return (
-              <div className="_1glehh" key={index}>
-                <div className="iT6kEc">
-                  <div className="_1BehlF VXs3As">
-                    <div className="_-0yJ2-">
-                      <div className="_1Z2fe1">
-                        <div className="_3mceb9">
-                          <Link to="detail">
-                            <img src={product.product.image} alt="" />
-                          </Link>
+        </header>
 
-                          <div className="_1WfuBi">
-                            <Link className="_3t5Sij" to="">
-                              <h3>{product.product.name}</h3>
+        <section className="content-product">
+          <div className="content-product__main">
+            <div className="_table">
+              <div className="_product">Sản phẩm</div>
+              <div className="_price">Đơn giá</div>
+              <div className="_qty">Số lượng</div>
+              <div className="_sub-total">Số tiền</div>
+              <div className="_remove">Thao tác</div>
+            </div>
+            {products.map((product, index) => {
+              return (
+                <div className="_1glehh" key={index}>
+                  <div className="iT6kEc">
+                    <div className="_1BehlF VXs3As">
+                      <div className="_-0yJ2-">
+                        <div className="_1Z2fe1">
+                          <div className="_3mceb9">
+                            <Link to="detail">
+                              <img src={product.product.image} alt="" />
                             </Link>
+
+                            <div className="_1WfuBi">
+                              <Link className="_3t5Sij" to="">
+                                <h3>{product.product.name}</h3>
+                              </Link>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="_1C6zuo">
-                        <div>
-                          <span className="_1E5-FE">
-                            {product.product.price &&
-                              product.product.price.toLocaleString()}
+                        <div className="_1C6zuo">
+                          <div>
+                            <span className="_1E5-FE">
+                              {product.product.price &&
+                                product.product.price.toLocaleString()}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="_2vZsK0">
+                          <div className="_3he7rw shopee-input-quantity">
+                            <button
+                              className="_3Ell0h"
+                              onClick={() => {
+                                decreaseQuantity(product);
+                              }}
+                              disabled={
+                                product.quantity && product.quantity === 1
+                                  ? true
+                                  : disabled
+                              }
+                            >
+                              <UilMinus />
+                            </button>
+
+                            <input
+                              readOnly
+                              type="text"
+                              className="_3Ell0h _37H5-t"
+                              value={product.quantity}
+                              onChange={() => {
+                                updateQuantity(product.product);
+                              }}
+                              disabled={disabled}
+                            />
+
+                            <button
+                              className="_3Ell0h"
+                              onClick={() => {
+                                increaseQuantity(product);
+                              }}
+                              disabled={disabled}
+                            >
+                              <UilPlus />
+                            </button>
+                          </div>
+                        </div>
+                        <div className="_2S6DJl">
+                          <span>
+                            {(
+                              product.product.price * product.quantity
+                            ).toLocaleString()}
                           </span>
                         </div>
-                      </div>
-                      <div className="_2vZsK0">
-                        <div className="_3he7rw shopee-input-quantity">
-                          <button
-                            className="_3Ell0h"
-                            onClick={() => {
-                              decreaseQuantity(product);
-                              // console.log(product.quantity);
-                            }}
-                            disabled={
-                              product.quantity && product.quantity === 1
-                                ? true
-                                : disabled
-                            }
-                          >
-                            <UilMinus />
-                          </button>
-
-                          <input
-                            readOnly
-                            type="text"
-                            className="_3Ell0h _37H5-t"
-                            value={product.quantity}
-                            onChange={() => {
-                              updateQuantity(product.product);
-                            }}
-                            disabled={disabled}
-                          />
-
-                          <button
-                            className="_3Ell0h"
-                            onClick={() => {
-                              increaseQuantity(product);
-                            }}
-                            disabled={disabled}
-                          >
-                            <UilPlus />
+                        <div className="_1-z5aG _1AeN8q">
+                          <button onClick={() => deleteProduct(product)}>
+                            <UilTrashAlt />
                           </button>
                         </div>
-                      </div>
-                      <div className="_2S6DJl">
-                        <span>
-                          {(
-                            product.product.price * product.quantity
-                          ).toLocaleString()}
-                        </span>
-                      </div>
-                      <div className="_1-z5aG _1AeN8q">
-                        <button onClick={() => deleteProduct(product)}>
-                          <UilTrashAlt />
-                        </button>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              alignItems: "center",
-            }}
-          >
-            <span></span>
-            <span
-              style={{ color: "#ee4d2d", fontWeight: "bold", fontSize: "25px" }}
-            >
-              {totalPrice().toLocaleString()}₫
-            </span>
-            <button
-              className="btn-buy"
-              onClick={() => {
-                navigate("/createOrder");
+              );
+            })}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "center",
               }}
             >
-              {" "}
-              Mua Hàng{" "}
-            </button>
+              <span></span>
+              <span
+                style={{
+                  color: "#ee4d2d",
+                  fontWeight: "bold",
+                  fontSize: "25px",
+                }}
+              >
+                {totalPrice().toLocaleString()}₫
+              </span>
+              <button
+                className="btn-buy"
+                onClick={() => {
+                  navigate("/createOrder");
+                }}
+              >
+                {" "}
+                Mua Hàng{" "}
+              </button>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+
+      <Footer />
+    </>
   );
 }
 

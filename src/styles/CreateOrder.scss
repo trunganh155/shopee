@@ -40,7 +40,7 @@ header span {
 }
 
 .box__Cart {
-    padding: 28px 30px 24px;
+    padding: 28px 8% 24px;
     border-radius: 4px;
     text-align: left;
     background-color: #fafafa;
@@ -123,7 +123,8 @@ header span {
 //Cart detail
 
 .main_Cart {
-    padding-top: 70px;
+    // padding-top: 70px;
+    padding: 100px;
 }
 
 .thumnail-img {
@@ -141,8 +142,6 @@ header span {
 
 .cart_pay {
     background-color: #fafdff;
-    /* display: flex; */
-    padding: 0 30px;
     justify-content: flex-end;
 }
 
@@ -150,7 +149,7 @@ header span {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 0 30px;
+    padding: 0 8%;
 }
 .cart_pay_lbl span:first-of-type {
     display: flex;
@@ -163,7 +162,7 @@ header span {
 }
 
 .cart_group_btn {
-    padding: 30px;
+    padding: 30px 8% 200px 8%;
     margin: 10px 0 0;
     display: flex;
     justify-content: space-between;
@@ -178,13 +177,16 @@ button.btnCreateOrder {
     align-items: center;
     justify-content: center;
     align-self: flex-start;
-    /* background: #fff; */
+    text-transform: uppercase;
     border: 1px solid rgba(0, 0, 0, 0.09);
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.03);
-    border-radius: 2px !important;
-    text-transform: capitalize;
+    border-radius: 4px !important;
     outline: none;
     width: 210px;
     height: 40px;
     font-size: 16px;
+}
+
+.btnCreateOrder:hover {
+    opacity: 0.8;
 }

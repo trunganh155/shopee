@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Category from "../components/Category";
-import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Header from "../components/Header";
 import Loading from "../components/Loading";
 import Product from "../components/Product";
 import "../styles/ProductHome.scss";
@@ -23,13 +23,17 @@ export default function Home() {
   const loadProductList = async () => {
     setLoading(true);
     try {
-      const endpoint = process.env.REACT_APP_API_BACKEND + "/product" + "";
+      const endpoint = process.env.REACT_APP_API_BACKEND + "/product";
 
       const { data } = await axios({
         url: endpoint,
         method: "get",
         headers: {},
         data: {},
+        params: {
+          page: 0,
+          limit: 40,
+        },
       });
 
       setProductList(data);

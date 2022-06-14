@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Loading from "../components/Loading.jsx";
 import "../styles/Detail.scss";
@@ -9,7 +10,8 @@ function Detail(props) {
   const [product, setProduct] = useState({});
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [loadingText, setLoadingText] = useState("Add to Cart");
+  const [quantity, setQuantity] = useState(1);
+  const [loadingText, setLoadingText] = useState("Thêm vào giỏ hàng");
 
   const token = localStorage.getItem("token");
 
@@ -19,14 +21,14 @@ function Detail(props) {
   const productInfo = async () => {
     setLoading(true);
     try {
-      const url = "https://k24-server-1.herokuapp.com/product/" + id;
+      const url = process.env.REACT_APP_API_BACKEND + "/product/" + id;
 
-      const { data } = await axios({
+      const res = await axios({
         url: url,
         method: "get",
       });
 
-      setProduct(data);
+      setProduct(res.data);
     } catch (error) {
       console.log(error.message);
     } finally {
@@ -60,7 +62,7 @@ function Detail(props) {
 
   const handleAddCart = async () => {
     document.getElementById("addtocart").setAttribute("disabled", "disabled");
-    setLoadingText("Adding...");
+    setLoadingText("Đang xử lý...");
 
     try {
       const url = process.env.REACT_APP_API_BACKEND + "/cart";
@@ -77,7 +79,7 @@ function Detail(props) {
             ...cartItems,
             {
               product: id,
-              quantity: 1,
+              quantity: quantity,
             },
           ],
         },
@@ -85,7 +87,7 @@ function Detail(props) {
     } catch (error) {
       console.log(error.message);
     } finally {
-      setLoadingText("Complete...");
+      setLoadingText("Thành công...");
 
       setTimeout(function () {
         navigate("/cart");
@@ -103,11 +105,8 @@ function Detail(props) {
           </>
         ) : (
           <>
-            <div className="container">
-              <div
-                className="product-detail-container"
-                style={{ marginTop: "150px" }}
-              >
+            <div className="container" style={{ marginTop: "150px" }}>
+              <div className="product-detail-container">
                 <div className="box-image">
                   <div className="gallery-item item-main">
                     <img src={product.image} />
@@ -119,15 +118,51 @@ function Detail(props) {
 
                   <div className="price-stock clearfix">
                     <div className="info-price">
-                      {product.price && product.price.toLocaleString()}
+                      {product.price && product.price.toLocaleString()}₫
                     </div>
-                    <div className="stock">In stock</div>
                   </div>
 
                   <div className="description">
-                    Form áo: OVERSIZE form rộng chuẩn TAY LỠ UNISEX cực đẹp.
-                    Ngày nay áo phông nam tay lỡ được coi là món đồ " Must have
-                    " trong tủ đồ của các tín đồ về thời trang...
+                     <span>=== ĐẢM BẢO ===</span>
+                    <span>+ Hình ảnh sản phẩm giống 100%. </span>
+                    <span>+ Chất lượng sản phẩm tốt nhất. </span>
+                    <span>+ Sản phẩm được kiểm tra kĩ càng trước khi giao.</span>
+                    <span>+ Hoàn tiền 100% nếu sản phẩm không đúng với mô tả. </span>
+                    <span>+ Hỗ trợ đổi trả theo quy định của Shopee.</span>
+                  </div>
+
+                  <div className="detail-quantity">
+                    <span>Số lượng</span>
+
+                    <button
+                      title="Giảm"
+                      onClick={() => {
+                        if (quantity > 1) {
+                          setQuantity(quantity - 1);
+                        }
+                      }}
+                    >
+                      -
+                    </button>
+
+                    <input
+                      type="number"
+                      value={quantity}
+                      onChange={(e) => {
+                        setQuantity(parseInt(e.target.value));
+                      }}
+                    />
+
+                    <button
+                      title="Thêm"
+                      onClick={() => {
+                        setQuantity(quantity + 1);
+                      }}
+                    >
+                      +
+                    </button>
+
+                    <span>3017 sản phẩm có sẵn</span>
                   </div>
 
                   <div className="add-to-cart">
@@ -136,6 +171,7 @@ function Detail(props) {
                         id="addtocart"
                         className="addtocart"
                         onClick={handleAddCart}
+                        disabled={quantity > 0 ? false : true}
                       >
                         {loadingText}
                       </button>
@@ -146,7 +182,7 @@ function Detail(props) {
                           navigate("/login");
                         }}
                       >
-                        Login
+                        Đăng nhập
                       </button>
                     )}
                   </div>
@@ -156,6 +192,8 @@ function Detail(props) {
           </>
         )}
       </div>
+
+      <Footer />
     </>
   );
 }
