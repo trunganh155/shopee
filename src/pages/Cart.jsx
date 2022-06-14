@@ -150,43 +150,44 @@ function Cart(props) {
         <section className="content-product">
           <div className="content-product__main">
             <div className="_table">
-              <div className="_product">Sản phẩm</div>
-              <div className="_price">Đơn giá</div>
-              <div className="_qty">Số lượng</div>
-              <div className="_sub-total">Số tiền</div>
-              <div className="_remove">Thao tác</div>
+              <div className="_product-lbl">Sản phẩm</div>
+              <div className="_price-lbl">Đơn giá</div>
+              <div className="_qty-lbl">Số lượng</div>
+              <div className="_sub-total-lbl">Thành tiền</div>
+              <div className="_remove-lbl">Thao tác</div>
+              {/* <div className="_remove-lbl">Thao tác dfdxxx</div> */}
             </div>
             {products.map((product, index) => {
               return (
-                <div className="_1glehh" key={index}>
-                  <div className="iT6kEc">
-                    <div className="_1BehlF VXs3As">
-                      <div className="_-0yJ2-">
-                        <div className="_1Z2fe1">
-                          <div className="_3mceb9">
+                <div className="tb-row" key={index}>
+                  <div className="tb-row-detail">
+                    <div className="content">
+                      <div className="main-comtent">
+                        <div className="tb-col-img">
+                          <div className="img-name">
                             <Link to="detail">
                               <img src={product.product.image} alt="" />
                             </Link>
 
-                            <div className="_1WfuBi">
-                              <Link className="_3t5Sij" to="">
+                            <div className="product-name">
+                              <Link className="name" to="">
                                 <h3>{product.product.name}</h3>
                               </Link>
                             </div>
                           </div>
                         </div>
-                        <div className="_1C6zuo">
+                        <div className="tb-col-price">
                           <div>
-                            <span className="_1E5-FE">
+                            <span className="span-price">
                               {product.product.price &&
                                 product.product.price.toLocaleString()}
                             </span>
                           </div>
                         </div>
-                        <div className="_2vZsK0">
-                          <div className="_3he7rw shopee-input-quantity">
+                        <div className="tb-col-qty">
+                          <div className="_update shopee-input-quantity">
                             <button
-                              className="_3Ell0h"
+                              className="update-quantity"
                               onClick={() => {
                                 decreaseQuantity(product);
                               }}
@@ -202,7 +203,7 @@ function Cart(props) {
                             <input
                               readOnly
                               type="text"
-                              className="_3Ell0h _37H5-t"
+                              className="update-quantity input-qty"
                               value={product.quantity}
                               onChange={() => {
                                 updateQuantity(product.product);
@@ -211,7 +212,7 @@ function Cart(props) {
                             />
 
                             <button
-                              className="_3Ell0h"
+                              className="update-quantity"
                               onClick={() => {
                                 increaseQuantity(product);
                               }}
@@ -221,14 +222,14 @@ function Cart(props) {
                             </button>
                           </div>
                         </div>
-                        <div className="_2S6DJl">
+                        <div className="tb-col-subTotal">
                           <span>
                             {(
                               product.product.price * product.quantity
                             ).toLocaleString()}
                           </span>
                         </div>
-                        <div className="_1-z5aG _1AeN8q">
+                        <div className="tb-col-remove">
                           <button onClick={() => deleteProduct(product)}>
                             <UilTrashAlt />
                           </button>
