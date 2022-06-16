@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -98,100 +98,95 @@ function Detail(props) {
   return (
     <>
       <Header />
-      <div>
-        {loading ? (
-          <>
-            <Loading />
-          </>
-        ) : (
-          <>
-            <div className="container" style={{ marginTop: "150px" }}>
-              <div className="product-detail-container">
-                <div className="box-image">
-                  <div className="gallery-item item-main">
-                    <img src={product.image} />
-                  </div>
-                </div>
 
-                <div className="box-info">
-                  <h2 className="name">{product.name}</h2>
+      {loading ? (
+        <>
+          <Loading />
+        </>
+      ) : (
+        <>
+          <div className="container-detail">
+            <div className="box-image">
+              <img src={product.image} />
+            </div>
 
-                  <div className="price-stock clearfix">
-                    <div className="info-price">
-                      {product.price && product.price.toLocaleString()}₫
-                    </div>
-                  </div>
+            <div className="box-info">
+              <h2 className="name">{product.name}</h2>
 
-                  <div className="description">
-                     <span>=== ĐẢM BẢO ===</span>
-                    <span>+ Hình ảnh sản phẩm giống 100%. </span>
-                    <span>+ Chất lượng sản phẩm tốt nhất. </span>
-                    <span>+ Sản phẩm được kiểm tra kĩ càng trước khi giao.</span>
-                    <span>+ Hoàn tiền 100% nếu sản phẩm không đúng với mô tả. </span>
-                    <span>+ Hỗ trợ đổi trả theo quy định của Shopee.</span>
-                  </div>
+              <div className="info-price">
+                {product.price && product.price.toLocaleString()}₫
+              </div>
 
-                  <div className="detail-quantity">
-                    <span>Số lượng</span>
+              <div className="description">
+                <span>=== ĐẢM BẢO ===</span>
+                <span>+ Hình ảnh sản phẩm giống 100%. </span>
+                <span>+ Chất lượng sản phẩm tốt nhất. </span>
+                <span>+ Sản phẩm được kiểm tra kĩ càng trước khi giao.</span>
+                <span>
+                  + Hoàn tiền 100% nếu sản phẩm không đúng với mô tả.{" "}
+                </span>
+                <span>+ Hỗ trợ đổi trả theo quy định của Shopee.</span>
+              </div>
 
-                    <button
-                      title="Giảm"
-                      onClick={() => {
-                        if (quantity > 1) {
-                          setQuantity(quantity - 1);
-                        }
-                      }}
-                    >
-                      -
-                    </button>
+              <div className="detail-quantity">
+                <span>Số lượng</span>
 
-                    <input
-                      type="number"
-                      value={quantity}
-                      onChange={(e) => {
-                        setQuantity(parseInt(e.target.value));
-                      }}
-                    />
+                <button
+                  title="Giảm"
+                  onClick={() => {
+                    if (quantity > 1) {
+                      setQuantity(quantity - 1);
+                    }
+                  }}
+                >
+                  -
+                </button>
 
-                    <button
-                      title="Thêm"
-                      onClick={() => {
-                        setQuantity(quantity + 1);
-                      }}
-                    >
-                      +
-                    </button>
+                <input
+                  type="number"
+                  value={quantity}
+                  onChange={(e) => {
+                    setQuantity(parseInt(e.target.value));
+                  }}
+                />
 
-                    <span>3017 sản phẩm có sẵn</span>
-                  </div>
+                <button
+                  title="Thêm"
+                  onClick={() => {
+                    setQuantity(quantity + 1);
+                  }}
+                >
+                  +
+                </button>
 
-                  <div className="add-to-cart">
-                    {token ? (
-                      <button
-                        id="addtocart"
-                        className="addtocart"
-                        onClick={handleAddCart}
-                        disabled={quantity > 0 ? false : true}
-                      >
-                        {loadingText}
-                      </button>
-                    ) : (
-                      <button
-                        className="btn-Login"
-                        onClick={() => {
-                          navigate("/login");
-                        }}
-                      >
-                        Đăng nhập
-                      </button>
-                    )}
-                  </div>
-                </div>
+                <span>3017 sản phẩm có sẵn</span>
+              </div>
+
+              <div className="add-to-cart">
+                {token ? (
+                  <button
+                    id="addtocart"
+                    className="addtocart"
+                    onClick={handleAddCart}
+                    disabled={quantity > 0 ? false : true}
+                  >
+                    {loadingText}
+                  </button>
+                ) : (
+                  <button
+                    className="btn-Login"
+                    onClick={() => {
+                      navigate("/login");
+                    }}
+                  >
+                    Đăng nhập
+                  </button>
+                )}
               </div>
             </div>
-          </>
-        )}
-      </div>
+          </div>
+        </>
+      )}
 
       <Footer />
     </>

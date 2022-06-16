@@ -82,7 +82,7 @@ export default function Home() {
             </div>
 
             <div className="product-home__list">
-              <div className="row">
+              <div className="container-product">
                 {productList.items.map((productItem, index) => (
                   <Product key={index} product={productItem} />
                 ))}

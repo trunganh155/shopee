@@ -11,7 +11,7 @@ import logo1 from "../assets/images/logoSP.png";
 import Loading from "../components/Loading";
 import "../styles/Login.scss";
 import { loginSchema } from "../validations/UserValidation";
-import { setUser } from "../redux/_user";
+import { setUser } from "../redux/_user"; 
 import { setCart } from "../redux/_cart";
 import Footer from "../components/Footer";
 

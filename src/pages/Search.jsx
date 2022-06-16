@@ -1,16 +1,17 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
+import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import Loading from "../components/Loading";
 import Product from "../components/Product";
 import "../styles/Search.scss";
 
 function Search(props) {
+  const location = useLocation();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  let [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const keyword = searchParams.get("keyword");
   const page = searchParams.get("page");
 
@@ -54,10 +55,10 @@ function Search(props) {
   for (let index = 0; index < totalPage; index++) {
     Pagination.push(
       <button
+        className="btn-page"
         key={index}
         onClick={() => {
-          // /search?keyword=product&page=index
-          const host = `${window.location.pathname}?keyword=${searchParams.get(
+          const host = `${location.pathname}?keyword=${searchParams.get(
             "keyword"
           )}&page=${index}`;
           navigate(host);
@@ -68,26 +69,42 @@ function Search(props) {
     );
   }
 
+  const handlePageClick = (e) => {
+    const host = `${location.pathname}?keyword=${searchParams.get("keyword")}
+    &page=${e.selected + 1}`;
+    navigate(host);
+  };
+
   return (
     <>
       <Header />
 
       <div
         style={{
-          margin: "100px 0px",
+          margin: "200px 0px 100px 0px",
         }}
       >
         {
-          <div className="products container">
-            <div className="row" style={{ width: "100%" }}>
-              {data.items.map((product) => {
-                return <Product key={product._id} product={product} />;
-              })}
-            </div>
+          <div className="container-search">
+            {data.items.map((product) => {
+              return <Product key={product._id} product={product} />;
+            })}
           </div>
         }
+        <div className="pagination">{Pagination}</div>
+      </div>
 
-        {Pagination}
+      <div className="page">
+        <ReactPaginate
+          className="page-item"
+          breakLabel="..."
+          nextLabel="next >>"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={2}
+          pageCount={Pagination.length}
+          previousLabel="<< prev"
+          renderOnZeroPageCount={null}
+        />
       </div>
 
       <Footer />

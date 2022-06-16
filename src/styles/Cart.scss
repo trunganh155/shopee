@@ -2,7 +2,6 @@ $color--red: #ee4d2d;
 $color--white: #ffffff;
 
 .header-cart {
-    border-bottom: 1px solid #d3d3d3;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0;
@@ -63,6 +62,7 @@ $color--white: #ffffff;
         margin: 0 auto;
         padding: 100px 8%;
         width: 100%;
+
         ._table {
             box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
             display: flex;
@@ -75,7 +75,7 @@ $color--white: #ffffff;
             background: #fff;
             text-transform: capitalize;
             margin-bottom: 12px;
-            color: #888;
+            color: #000;
             padding: 0 20px;
             ._product-lbl {
                 color: rgba(0, 0, 0, 0.8);
@@ -83,18 +83,22 @@ $color--white: #ffffff;
                 text-align: left;
             }
             ._price-lbl {
+                color: rgba(0, 0, 0, 0.8);
                 width: 15%;
                 text-align: center;
             }
             ._qty-lbl {
+                color: rgba(0, 0, 0, 0.8);
                 width: 15%;
                 text-align: center;
             }
             ._sub-total-lbl {
+                color: rgba(0, 0, 0, 0.8);
                 text-align: center;
                 width: 15%;
             }
             ._remove-lbl {
+                color: rgba(0, 0, 0, 0.8);
                 width: 15%;
                 text-align: center;
             }
@@ -114,7 +118,7 @@ $color--white: #ffffff;
                     padding: 0 20px 15px;
                     margin-top: 15px;
                 }
-                .main-comtent {
+                .main-content {
                     display: flex;
                     align-items: center;
                     .tb-col-img {
@@ -134,11 +138,10 @@ $color--white: #ffffff;
                             .product-name {
                                 display: flex;
                                 align-items: center;
-                                padding: 5px 20px 0 10px;
-                                font-size: 14px;
-                                width: 243.5px;
-                                line-height: 16px;
+                                padding: 12px 5px 0px 10px;
+                                width: 245px;
                                 overflow: hidden;
+
                                 .name {
                                     text-decoration: none;
                                     color: rgba(0, 0, 0, 0.87);
@@ -170,10 +173,22 @@ $color--white: #ffffff;
                         justify-content: center;
                         flex-direction: column;
                         width: 15%;
+
+                        svg {
+                            font-size: 18px;
+                            font-weight: bold;
+                        }
+
+                        button:hover {
+                            background-color: #ee4d2d;
+                            color: #fff;
+                        }
+
                         ._update {
                             display: flex;
                             align-items: center;
                         }
+
                         .update-quantity {
                             outline: none;
                             cursor: pointer;
@@ -194,7 +209,7 @@ $color--white: #ffffff;
                             height: 32px;
                         }
                         .update-quantity[type="text"]:disabled {
-                            color: #d4cece;
+                            color: #bbb;
                         }
                         .update-quantity:disabled {
                             opacity: 0.6;
@@ -273,20 +288,36 @@ $color--white: #ffffff;
         padding: 0 5px 15px !important;
     }
 
-    ._product-lbl {
-        width: 15% !important;
+    ._sub-total-lbl {
+        display: none;
     }
-
+    ._product-lbl {
+        width: 20% !important;
+    }
+    ._price-lbl {
+        width: 30% !important;
+    }
     ._qty-lbl {
         width: 40% !important;
     }
-
-    .tb-col-img {
-        width: 15% !important;
+    ._remove-lbl {
+        width: 10% !important;
     }
 
+    .tb-col-img {
+        width: 20% !important;
+    }
+    .tb-col-price {
+        width: 30% !important;
+    }
     .tb-col-qty {
         width: 40% !important;
+    }
+    .tb-col-remove {
+        width: 10% !important;
+    }
+    .tb-col-subTotal {
+        display: none;
     }
 
     .product-name {

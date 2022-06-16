@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { AiFillFacebook, AiFillInstagram } from "react-icons/ai";
 import { CgShoppingCart } from "react-icons/cg";
 import { GoSearch } from "react-icons/go";
+import { FaUserCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import logoWhite from "../assets/images/logoWhite.png";
@@ -80,22 +81,50 @@ function Header(props) {
 
       <section className="header__user">
         {token === null ? (
-          <div>
-            <button
-              onClick={() => {
-                navigate("/register");
-              }}
-            >
-              Đăng ký
-            </button>
-            <span>|</span>
-            <button
-              onClick={() => {
-                navigate("/login");
-              }}
-            >
-              Đăng nhập
-            </button>
+          <div className="header__user__login">
+            <div className="pc">
+              <button
+                onClick={() => {
+                  navigate("/register");
+                }}
+              >
+                Đăng ký
+              </button>
+              <span>|</span>
+              <button
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                Đăng nhập
+              </button>
+            </div>
+
+            <div className="mobile">
+              <FaUserCircle />
+
+              <div className="drop-menu-2">
+                <div className="menu-link-2">
+                  <div className="menu-2">
+                    <button
+                      onClick={() => {
+                        navigate("/login");
+                      }}
+                    >
+                      Đăng nhập
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        navigate("/register");
+                      }}
+                    >
+                      Đăng ký
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         ) : (
           <div className="header__user__avt">

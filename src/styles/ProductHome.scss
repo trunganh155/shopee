@@ -18,7 +18,14 @@
     color: rgb(238, 77, 45);
 }
 
-.col-2-4 {
-    flex: 0 0 auto;
-    width: 20%;
+.container-product{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    // justify-content: space-between;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
 }
+
+

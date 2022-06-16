@@ -1,4 +1,5 @@
 import { UilMinus, UilPlus, UilTrashAlt } from "@iconscout/react-unicons";
+import { HiMinus, HiPlus } from "react-icons/hi";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -154,7 +155,7 @@ function Cart(props) {
               <div className="_price-lbl">Đơn giá</div>
               <div className="_qty-lbl">Số lượng</div>
               <div className="_sub-total-lbl">Thành tiền</div>
-              <div className="_remove-lbl">Thao tác</div>
+              <div className="_remove-lbl">Xóa</div>
               {/* <div className="_remove-lbl">Thao tác dfdxxx</div> */}
             </div>
             {products.map((product, index) => {
@@ -162,7 +163,7 @@ function Cart(props) {
                 <div className="tb-row" key={index}>
                   <div className="tb-row-detail">
                     <div className="content">
-                      <div className="main-comtent">
+                      <div className="main-content">
                         <div className="tb-col-img">
                           <div className="img-name">
                             <Link to="detail">
@@ -171,7 +172,7 @@ function Cart(props) {
 
                             <div className="product-name">
                               <Link className="name" to="">
-                                <h3>{product.product.name}</h3>
+                                <h4>{product.product.name}</h4>
                               </Link>
                             </div>
                           </div>
@@ -197,7 +198,7 @@ function Cart(props) {
                                   : disabled
                               }
                             >
-                              <UilMinus />
+                              <HiMinus />
                             </button>
 
                             <input
@@ -218,7 +219,7 @@ function Cart(props) {
                               }}
                               disabled={disabled}
                             >
-                              <UilPlus />
+                              <HiPlus />
                             </button>
                           </div>
                         </div>
