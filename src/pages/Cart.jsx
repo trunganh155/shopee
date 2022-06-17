@@ -26,9 +26,10 @@ function Cart(props) {
 
   const getProduct = async () => {
     try {
+      const url = process.env.REACT_APP_API_BACKEND + "/cart";
       const data = await axios({
         method: "GET",
-        url: process.env.REACT_APP_API_BACKEND + "/cart",
+        url: url,
         headers: {
           "Content-Type": "application/json",
           token: token,

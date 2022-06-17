@@ -90,13 +90,6 @@ header span {
     margin-bottom: 30px;
 }
 
-.cart_title_header span:first-of-type {
-    display: flex;
-    align-items: center;
-    font-size: 18px;
-    color: #222;
-}
-
 .flex-2 {
     flex: 2;
 }
@@ -116,8 +109,9 @@ header span {
 .cart_title_header span {
     display: flex;
     align-items: center;
-    font-size: 14px;
-    color: #bbb;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
 }
 
 //Cart detail
@@ -187,4 +181,7 @@ button.btnCreateOrder {
 
 .btnCreateOrder:hover {
     opacity: 0.8;
+}
+
+@media only screen and (max-width: 739px) {
 }

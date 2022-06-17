@@ -12,10 +12,10 @@ function Category(props) {
 
   const loadCategories = async () => {
     try {
-      const endpoint = process.env.REACT_APP_API_BACKEND +"/category";
+      const url = process.env.REACT_APP_API_BACKEND + "/category";
 
       const { data } = await axios({
-        url: endpoint,
+        url: url,
         headers: {},
         data: {},
       });

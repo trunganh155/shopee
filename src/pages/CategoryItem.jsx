@@ -50,7 +50,6 @@ function CategoryItem(props) {
 
       <div className="category-item__main">
         <div className="container">
-          <div className="category-item__title">Category Item sản phẩm:</div>
           {loading ? (
             <Loading />
           ) : (

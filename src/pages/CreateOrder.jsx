@@ -81,7 +81,7 @@ export default function CreateOrder() {
                 navigate("/");
               }}
             />
-            <span style={{fontSize:'22px' }}>Thanh toán</span>
+            <span style={{ fontSize: "22px" }}>Thanh toán</span>
           </div>
         </header>
 
